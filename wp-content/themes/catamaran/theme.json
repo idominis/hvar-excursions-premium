@@ -1,0 +1,183 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
+    "settings": {
+        "appearanceTools": true,
+        "spacing": {
+            "units": [
+                "%",
+                "px",
+                "em",
+                "rem",
+                "vh",
+                "vw"
+            ],
+            "blockGap": null
+        },
+        "color": {
+            "palette": [
+                {
+                    "slug": "bg-color",
+                    "name": "Background color",
+                    "color": "#F4F4EE"
+                },
+                {
+                    "slug": "bd-color",
+                    "name": "Border color",
+                    "color": "#DBDBDB"
+                },
+                {
+                    "slug": "text-dark",
+                    "name": "Text dark",
+                    "color": "#161921"
+                },
+                {
+                    "slug": "text-light",
+                    "name": "Text light",
+                    "color": "#A5A6AA"
+                },
+                {
+                    "slug": "text-link",
+                    "name": "Link",
+                    "color": "#E2440A"
+                },
+                {
+                    "slug": "text-hover",
+                    "name": "Link hover",
+                    "color": "#C91C05"
+                },
+                {
+                    "slug": "text-link-2",
+                    "name": "Accent 2",
+                    "color": "#C09550"
+                },
+                {
+                    "slug": "text-hover-2",
+                    "name": "Accent 2 hover",
+                    "color": "#A27836"
+                },
+                {
+                    "slug": "text-link-3",
+                    "name": "Accent 3",
+                    "color": "#2948D0"
+                },
+                {
+                    "slug": "text-hover-3",
+                    "name": "Accent 3 hover",
+                    "color": "#1530A8"
+                }
+            ],
+            "duotone": [
+                {
+                    "colors": [
+                        "#F4F4EE",
+                        "#707376"
+                    ],
+                    "slug": "bg-and-text",
+                    "name": "Background and text color"
+                },
+                {
+                    "colors": [
+                        "#F4F4EE",
+                        "#161921"
+                    ],
+                    "slug": "bg-and-dark",
+                    "name": "Background and dark color"
+                },
+                {
+                    "colors": [
+                        "#F4F4EE",
+                        "#E2440A"
+                    ],
+                    "slug": "bg-and-link",
+                    "name": "Background and link color"
+                }
+            ],
+            "gradients": [
+                {
+                    "slug": "vertical-link-to-hover",
+                    "gradient": "linear-gradient(to bottom,var(--theme-color-text_link) 0%,var(--theme-color-text_hover) 100%)",
+                    "name": "Vertical from link color to hover color"
+                },
+                {
+                    "slug": "diagonal-link-to-hover",
+                    "gradient": "linear-gradient(to bottom right,var(--theme-color-text_link) 0%,var(--theme-color-text_hover) 100%)",
+                    "name": "Diagonal from link color to hover color"
+                }
+            ]
+        },
+        "typography": {
+            "fluid": true,
+            "dropCap": true,
+            "fontFamilies": [
+                {
+                    "fontFamily": "\"DM Sans\",sans-serif",
+                    "name": "\"DM Sans\",sans-serif",
+                    "slug": "p-font"
+                },
+                {
+                    "fontFamily": "inherit",
+                    "name": "inherit",
+                    "slug": "post-font"
+                },
+                {
+                    "fontFamily": "alga,serif",
+                    "name": "alga,serif",
+                    "slug": "h1-font"
+                }
+            ]
+        },
+        "layout": {
+            "contentSize": "840px",
+            "wideSize": "1290px"
+        },
+        "custom": {
+            "spacing": {
+                "tiny": "var(--sc-space-tiny,   1rem)",
+                "small": "var(--sc-space-small,  2rem)",
+                "medium": "var(--sc-space-medium, 3.3333rem)",
+                "large": "var(--sc-space-large,  6.6667rem)",
+                "huge": "var(--sc-space-huge,   8.6667rem)"
+            }
+        }
+    },
+    "styles": {
+        "spacing": {
+            "blockGap": 0
+        },
+        "blocks": {
+            "core/button": {
+                "border": {
+                    "radius": "0"
+                },
+                "color": {
+                    "background": "var(--theme-color-text_link)",
+                    "text": "var(--theme-color-inverse_link)"
+                },
+                "typography": {
+                    "fontFamily": "var(--theme-font-button_font-family)",
+                    "fontWeight": "var(--theme-font-button_font-weight)",
+                    "fontSize": "var(--theme-font-button_font-size)",
+                    "lineHeight": "var(--theme-font-button_line-height)"
+                }
+            },
+            "core/post-comments": {
+                "spacing": {
+                    "padding": {
+                        "top": "var(--wp--custom--spacing--small)"
+                    }
+                }
+            },
+            "core/pullquote": {
+                "border": {
+                    "width": "1px 0"
+                }
+            },
+            "core/quote": {
+                "border": {
+                    "width": "1px"
+                }
+            }
+        }
+    }
+}

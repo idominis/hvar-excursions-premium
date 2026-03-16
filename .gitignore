@@ -1,0 +1,38 @@
+# WordPress core
+/wp-admin/
+/wp-includes/
+/wp-content/upgrade/
+/wp-content/blogs.dir/
+/wp-content/cache/
+/wp-content/backups/
+/wp-content/backup-db/
+/wp-content/advanced-cache.php
+/wp-config.php
+.htaccess
+license.txt
+readme.html
+wp-*.php
+xmlrpc.php
+
+# Logs and temp
+*.log
+error_log
+*.bak
+*.tmp
+
+# Uploads and media (ne uploadaj slike, PDF-ove itd.)
+/wp-content/uploads/
+
+# Sensitive files
+.env
+.DS_Store
+Thumbs.db
+
+# IDE / editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules (ako koristiš npm za theme)
+node_modules/
