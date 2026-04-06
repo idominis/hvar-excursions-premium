@@ -54,27 +54,27 @@ $excursions = array(
 $boat_recommendations = array(
     array(
         'chip'        => 'Easy Day Setup',
-        'title'       => 'Boat Nautica 500 30HP',
+        'title'       => 'Betina 30hp',
         'copy'        => 'Best for simple south-side cruising, beach stops, and easy Pakleni days close to Hvar.',
         'ideal'       => 'Pakleni and nearby coves',
         'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/nautica-500/thumb/boat_nautica-500_hvar_excursions_rentals.jpg',
-        'link'        => add_query_arg( array( 'subject' => 'Excursion Inquiry', 'boat' => 'Boat Nautica 500 30HP' ), $hex_links['contact'] ),
+        'link'        => add_query_arg( array( 'subject' => 'Excursion Inquiry', 'boat' => 'Betina 30hp' ), $hex_links['contact'] ),
     ),
     array(
         'chip'        => 'Balanced Private Tour',
-        'title'       => 'Scar Next 150HP',
+        'title'       => 'Scar 1 Sivi 150hp',
         'copy'        => 'A strong all-round private excursion boat for Southern Hvar, Red Rocks, Dubovica, and fast scenic hopping.',
         'ideal'       => 'South Hvar coast',
         'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/scar150hp/thumb/scar_150hp_hvar_excursions_rentals.jpg',
-        'link'        => add_query_arg( array( 'subject' => 'Excursion Inquiry', 'boat' => 'Scar Next 150HP' ), $hex_links['contact'] ),
+        'link'        => add_query_arg( array( 'subject' => 'Excursion Inquiry', 'boat' => 'Scar 1 Sivi 150hp' ), $hex_links['contact'] ),
     ),
     array(
         'chip'        => 'Flagship Experience',
-        'title'       => 'Luxury Speedboat Alesta Raptor',
+        'title'       => 'Raptor',
         'copy'        => 'The premium match for Blue Cave and longer full-day routes when comfort, power, and arrival style all matter.',
         'ideal'       => 'Vis and Blue Cave',
         'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/raptor-alesta/thumb/raptor-alesta-hvar-excursions-rentals.jpg',
-        'link'        => add_query_arg( array( 'subject' => 'Excursion Inquiry', 'boat' => 'Luxury Speedboat Alesta Raptor' ), $hex_links['contact'] ),
+        'link'        => add_query_arg( array( 'subject' => 'Excursion Inquiry', 'boat' => 'Raptor' ), $hex_links['contact'] ),
     ),
 );
 

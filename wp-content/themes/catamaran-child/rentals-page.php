@@ -16,8 +16,8 @@ $hex_links = array(
 );
 
 $featured_rental = array(
-	'title'       => 'Luxury Speedboat Alesta Raptor',
-	'short_title' => 'Raptor Alesta 480HP',
+	'title'       => 'Raptor',
+	'short_title' => 'Raptor 480HP',
 	'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/raptor-alesta/thumb/raptor-alesta-hvar-excursions-rentals.jpg',
 	'gallery'     => array(
 		'https://www.hvarexcursions.com/img/rentals/photos/raptor-alesta/raptor-alesta-hvar-excursions-rentals%20(1-1).jpg',
@@ -36,7 +36,7 @@ $featured_rental = array(
 
 $speedboats = array(
 	array(
-		'title'       => 'Joker Clubman-26 300HP',
+		'title'       => 'Clubman 300hp',
 		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/joker300hp/joker_jc_clubman_hvar_excursions_rentals(10-1).jpg',
 		'gallery'     => array(
 			'https://www.hvarexcursions.com/img/rentals/photos/joker300hp/joker_jc_clubman_hvar_excursions_rentals(10-1).jpg',
@@ -48,7 +48,7 @@ $speedboats = array(
 		'meta'        => array( '300HP', '8.50 m / 28 ft', '12-14 guests' ),
 	),
 	array(
-		'title'       => 'Zar-75 300HP',
+		'title'       => 'Zar 1 Sivi 300hp',
 		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/zar300hp/thumb/zar_hvar_excursions_rentals.jpg',
 		'gallery'     => array(
 			'https://www.hvarexcursions.com/img/rentals/photos/zar300hp/thumb/zar_hvar_excursions_rentals.jpg',
@@ -60,7 +60,7 @@ $speedboats = array(
 		'meta'        => array( '300HP', '8.50 m / 28 ft', '12-14 guests' ),
 	),
 	array(
-		'title'       => 'Solemar 200HP',
+		'title'       => 'Baracuda 4 200hp',
 		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/solemar200hp/thumb/solemar_200hp_hvar_excursions_rentals.jpg',
 		'gallery'     => array(
 			'https://www.hvarexcursions.com/img/rentals/photos/solemar200hp/thumb/solemar_200hp_hvar_excursions_rentals.jpg',
@@ -72,7 +72,7 @@ $speedboats = array(
 		'meta'        => array( '200HP', '7.00 m / 23 ft', '10 guests' ),
 	),
 	array(
-		'title'       => 'BSC 175HP',
+		'title'       => 'BSC 175 hp',
 		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/bsc175hp/thumb/bsc_175hp_hvar_excursions_rentals.jpg',
 		'gallery'     => array(
 			'https://www.hvarexcursions.com/img/rentals/photos/bsc175hp/thumb/bsc_175hp_hvar_excursions_rentals.jpg',
@@ -84,7 +84,7 @@ $speedboats = array(
 		'meta'        => array( '175HP', '7.00 m / 23 ft', '10 guests' ),
 	),
 	array(
-		'title'       => 'Solemar 175HP',
+		'title'       => 'Baracuda Black 175hp',
 		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/solemar175hp/thumb/solemar_150hp_hvar_excursions_rentals.jpg',
 		'gallery'     => array(
 			'https://www.hvarexcursions.com/img/rentals/photos/solemar175hp/thumb/solemar_150hp_hvar_excursions_rentals.jpg',
@@ -96,7 +96,7 @@ $speedboats = array(
 		'meta'        => array( '175HP', '7.00 m / 23 ft', '10 guests' ),
 	),
 	array(
-		'title'       => 'Scar Next 150HP',
+		'title'       => 'Scar 1 Sivi 150hp',
 		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/scar150hp/thumb/scar_150hp_hvar_excursions_rentals.jpg',
 		'gallery'     => array(
 			'https://www.hvarexcursions.com/img/rentals/photos/scar150hp/thumb/scar_150hp_hvar_excursions_rentals.jpg',
@@ -108,7 +108,19 @@ $speedboats = array(
 		'meta'        => array( '150HP', '6.50 m / 21 ft', '8 guests' ),
 	),
 	array(
-		'title'       => 'Quicksilver 100HP',
+		'title'       => 'Scar 2 Bijeli 150hp',
+		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/scar150hp/thumb/scar_150hp_hvar_excursions_rentals.jpg',
+		'gallery'     => array(
+			'https://www.hvarexcursions.com/img/rentals/photos/scar150hp/thumb/scar_150hp_hvar_excursions_rentals.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/scar150hp/scar_150hp_hvar_excursions_rentals%20(2).jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/scar150hp/scar_150hp_hvar_excursions_rentals%20(5).jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/scar150hp/scar_150hp_hvar_excursions_rentals%20(8).jpg',
+		),
+		'description' => 'The second Scar 150hp option in the fleet, ideal for guests who want a clean sporty profile and a compact private-day setup around Hvar and the Pakleni Islands.',
+		'meta'        => array( '150HP', '6.50 m / 21 ft', '8 guests' ),
+	),
+	array(
+		'title'       => 'Quicksilver 100hp',
 		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/quicksilver100hp/thumb/Quicksilver_100hp_hvar_excursions_rentals.jpg',
 		'gallery'     => array(
 			'https://www.hvarexcursions.com/img/rentals/photos/quicksilver100hp/thumb/Quicksilver_100hp_hvar_excursions_rentals.jpg',
@@ -119,11 +131,47 @@ $speedboats = array(
 		'description' => 'A practical speedboat for couples and small groups, with enough speed for island hopping and a simple setup that keeps the day easy and enjoyable.',
 		'meta'        => array( '100HP', '5.50 m / 18 ft', '7 guests' ),
 	),
+	array(
+		'title'       => 'Zodiac 60hp',
+		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/zodiac60hp/thumb/boat_zodiac_hvar_excursions_rentals.jpg',
+		'gallery'     => array(
+			'https://www.hvarexcursions.com/img/rentals/photos/zodiac60hp/thumb/boat_zodiac_hvar_excursions_rentals.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/zodiac60hp/boat_zodiac_hvar_excursions_rentals_2.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/zodiac60hp/boat_zodiac_hvar_excursions_rentals_3.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/zodiac60hp/boat_zodiac_hvar_excursions_rentals_4.jpg',
+		),
+		'description' => 'A nimble 60hp Zodiac that works beautifully for short self-drive adventures, beach hopping, and easy family cruising around the closer Hvar coastline.',
+		'meta'        => array( '60HP', 'Compact RIB', 'Easy coastal exploring' ),
+	),
+	array(
+		'title'       => 'Marinello 1 Bordo 60hp',
+		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/thumb/boat_marinello_hvar_excursions_rentals.jpg',
+		'gallery'     => array(
+			'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/thumb/boat_marinello_hvar_excursions_rentals.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/boat_marinello_hvar_excursions_rentals_2.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/boat_marinello_hvar_excursions_rentals_3.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/boat_marinello_hvar_excursions_rentals_4.jpg',
+		),
+		'description' => 'The first Marinello in the lineup, a clean and approachable 60hp setup for guests who want something simple, polished, and fun for a shorter day at sea.',
+		'meta'        => array( '60HP', 'Compact open boat', 'Great for couples and small groups' ),
+	),
+	array(
+		'title'       => 'Marinello 2 Crveni 70hp',
+		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/thumb/boat_marinello_hvar_excursions_rentals.jpg',
+		'gallery'     => array(
+			'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/thumb/boat_marinello_hvar_excursions_rentals.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/boat_marinello_hvar_excursions_rentals_2.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/boat_marinello_hvar_excursions_rentals_3.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/marinelo60hp/boat_marinello_hvar_excursions_rentals_4.jpg',
+		),
+		'description' => 'The red Marinello brings a little more punch and presence, giving guests an easy 70hp option for smooth Pakleni runs and relaxed day trips from Hvar.',
+		'meta'        => array( '70HP', 'Compact open boat', 'Ideal for easy island hopping' ),
+	),
 );
 
 $boats = array(
 	array(
-		'title'       => 'Boat Nautica 500 30HP',
+		'title'       => 'Betina 30hp',
 		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/nautica-500/thumb/boat_nautica-500_hvar_excursions_rentals.jpg',
 		'gallery'     => array(
 			'https://www.hvarexcursions.com/img/rentals/photos/nautica-500/thumb/boat_nautica-500_hvar_excursions_rentals.jpg',
@@ -135,7 +183,7 @@ $boats = array(
 		'meta'        => array( '30HP', '4.80 m / 16 ft', '5 guests', 'Fuel included' ),
 	),
 	array(
-		'title'       => 'Boat 20HP',
+		'title'       => 'Pirka 20hp',
 		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/nautica-500/thumb/boat_nautica-500_hvar_excursions_rentals.jpg',
 		'gallery'     => array(
 			'https://www.hvarexcursions.com/img/rentals/photos/nautica-500/thumb/boat_nautica-500_hvar_excursions_rentals.jpg',
@@ -143,8 +191,20 @@ $boats = array(
 			'https://www.hvarexcursions.com/img/rentals/photos/nautica-500/boat_nautica-2020_hvar_excursions_rentals(4).jpg',
 			'https://www.hvarexcursions.com/img/rentals/photos/nautica-500/boat_nautica-2020_hvar_excursions_rentals(7).jpg',
 		),
-		'description' => 'A lighter self-drive option for relaxed coastal days, hidden coves, and simple Pakleni routes. We are currently using Nautica 500 30HP photos here until the dedicated 20HP photo set is ready.',
+		'description' => 'A lighter self-drive option for relaxed coastal days, hidden coves, and simple Pakleni routes. We are currently using our closest small-boat photo set here until the dedicated Pirka gallery is ready.',
 		'meta'        => array( '20HP', 'Easy self-drive', 'Ideal for short day cruising' ),
+	),
+	array(
+		'title'       => 'Adria 8hp',
+		'image'       => 'https://www.hvarexcursions.com/img/rentals/photos/boat20hp/thumb/boat_20hp_hvar_excursions_rentals.jpg',
+		'gallery'     => array(
+			'https://www.hvarexcursions.com/img/rentals/photos/boat20hp/thumb/boat_20hp_hvar_excursions_rentals.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/boat20hp/boat_20hp_hvar_excursions_rentals_2.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/boat20hp/boat_20hp_hvar_excursions_rentals_3.jpg',
+			'https://www.hvarexcursions.com/img/rentals/photos/boat20hp/boat_20hp_hvar_excursions_rentals_4.jpg',
+		),
+		'description' => 'Our most straightforward little boat for calm-weather coastal exploring, best for very easy near-shore cruising and guests who want the simplest possible self-drive option.',
+		'meta'        => array( '8HP', 'Small easy-drive boat', 'Short coastal routes' ),
 	),
 );
 
@@ -163,14 +223,14 @@ foreach ( $boats as &$boat ) {
 }
 unset( $boat );
 
-$boats[1]['image'] = catamaran_child_asset_image_url(
+$boats[2]['image'] = catamaran_child_asset_image_url(
 	'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.00.41_b1305334.jpg',
-	$boats[1]['image']
+	$boats[2]['image']
 );
-$boats[1]['gallery'] = array(
-	catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.00.41_b1305334.jpg', $boats[1]['gallery'][0] ),
-	catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.01.02_42b37261.jpg', $boats[1]['gallery'][1] ),
-	catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.01.21_01446e8d.jpg', $boats[1]['gallery'][2] ),
+$boats[2]['gallery'] = array(
+	catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.00.41_b1305334.jpg', $boats[2]['gallery'][0] ),
+	catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.01.02_42b37261.jpg', $boats[2]['gallery'][1] ),
+	catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.01.21_01446e8d.jpg', $boats[2]['gallery'][2] ),
 );
 
 $featured_rental['image'] = catamaran_child_asset_image_url( 'rentals/Raptor/Raptor_10.jpg', $featured_rental['image'] );
@@ -226,12 +286,51 @@ $speedboats[5]['gallery'] = array(
 	catamaran_child_asset_image_url( 'rentals/scar150hp/scar_150hp_hvar_excursions_rentals (8).jpg', $speedboats[5]['gallery'][3] ),
 );
 
-$speedboats[6]['image'] = catamaran_child_asset_image_url( 'rentals/Quicksilver/thumb/Quicksilver_100hp_hvar_excursions_rentals.webp', $speedboats[6]['image'] );
+$speedboats[6]['image'] = catamaran_child_asset_image_url( 'rentals/scar150hp/thumb/scar_150hp_hvar_excursions_rentals.jpg', $speedboats[6]['image'] );
 $speedboats[6]['gallery'] = array(
-	catamaran_child_asset_image_url( 'rentals/Quicksilver/thumb/Quicksilver_100hp_hvar_excursions_rentals.webp', $speedboats[6]['gallery'][0] ),
-	catamaran_child_asset_image_url( 'rentals/Quicksilver/Quicksilver_100HP_1-2.webp', $speedboats[6]['gallery'][1] ),
-	catamaran_child_asset_image_url( 'rentals/Quicksilver/Quicksilver_100HP_1-4.webp', $speedboats[6]['gallery'][2] ),
-	catamaran_child_asset_image_url( 'rentals/Quicksilver/Quicksilver_100HP_1-5.webp', $speedboats[6]['gallery'][3] ),
+	catamaran_child_asset_image_url( 'rentals/scar150hp/thumb/scar_150hp_hvar_excursions_rentals.jpg', $speedboats[6]['gallery'][0] ),
+	catamaran_child_asset_image_url( 'rentals/scar150hp/scar_150hp_hvar_excursions_rentals (2).jpg', $speedboats[6]['gallery'][1] ),
+	catamaran_child_asset_image_url( 'rentals/scar150hp/scar_150hp_hvar_excursions_rentals (5).jpg', $speedboats[6]['gallery'][2] ),
+	catamaran_child_asset_image_url( 'rentals/scar150hp/scar_150hp_hvar_excursions_rentals (8).jpg', $speedboats[6]['gallery'][3] ),
+);
+
+$speedboats[7]['image'] = catamaran_child_asset_image_url( 'rentals/Quicksilver/thumb/Quicksilver_100hp_hvar_excursions_rentals.webp', $speedboats[7]['image'] );
+$speedboats[7]['gallery'] = array(
+	catamaran_child_asset_image_url( 'rentals/Quicksilver/thumb/Quicksilver_100hp_hvar_excursions_rentals.webp', $speedboats[7]['gallery'][0] ),
+	catamaran_child_asset_image_url( 'rentals/Quicksilver/Quicksilver_100HP_1-2.webp', $speedboats[7]['gallery'][1] ),
+	catamaran_child_asset_image_url( 'rentals/Quicksilver/Quicksilver_100HP_1-4.webp', $speedboats[7]['gallery'][2] ),
+	catamaran_child_asset_image_url( 'rentals/Quicksilver/Quicksilver_100HP_1-5.webp', $speedboats[7]['gallery'][3] ),
+);
+
+$speedboats[8]['image'] = catamaran_child_asset_image_url( 'rentals/zodiac60hp/thumb/boat_zodiac_hvar_excursions_rentals.jpg', $speedboats[8]['image'] );
+$speedboats[8]['gallery'] = array(
+	catamaran_child_asset_image_url( 'rentals/zodiac60hp/thumb/boat_zodiac_hvar_excursions_rentals.jpg', $speedboats[8]['gallery'][0] ),
+	catamaran_child_asset_image_url( 'rentals/zodiac60hp/boat_zodiac_hvar_excursions_rentals_2.jpg', $speedboats[8]['gallery'][1] ),
+	catamaran_child_asset_image_url( 'rentals/zodiac60hp/boat_zodiac_hvar_excursions_rentals_3.jpg', $speedboats[8]['gallery'][2] ),
+	catamaran_child_asset_image_url( 'rentals/zodiac60hp/boat_zodiac_hvar_excursions_rentals_4.jpg', $speedboats[8]['gallery'][3] ),
+);
+
+$speedboats[9]['image'] = catamaran_child_asset_image_url( 'rentals/marinelo60hp/thumb/boat_marinello_hvar_excursions_rentals.jpg', $speedboats[9]['image'] );
+$speedboats[9]['gallery'] = array(
+	catamaran_child_asset_image_url( 'rentals/marinelo60hp/thumb/boat_marinello_hvar_excursions_rentals.jpg', $speedboats[9]['gallery'][0] ),
+	catamaran_child_asset_image_url( 'rentals/marinelo60hp/boat_marinello_hvar_excursions_rentals_2.jpg', $speedboats[9]['gallery'][1] ),
+	catamaran_child_asset_image_url( 'rentals/marinelo60hp/boat_marinello_hvar_excursions_rentals_3.jpg', $speedboats[9]['gallery'][2] ),
+	catamaran_child_asset_image_url( 'rentals/marinelo60hp/boat_marinello_hvar_excursions_rentals_4.jpg', $speedboats[9]['gallery'][3] ),
+);
+
+$speedboats[10]['image'] = catamaran_child_asset_image_url( 'rentals/marinelo60hp/thumb/boat_marinello_hvar_excursions_rentals.jpg', $speedboats[10]['image'] );
+$speedboats[10]['gallery'] = array(
+	catamaran_child_asset_image_url( 'rentals/marinelo60hp/thumb/boat_marinello_hvar_excursions_rentals.jpg', $speedboats[10]['gallery'][0] ),
+	catamaran_child_asset_image_url( 'rentals/marinelo60hp/boat_marinello_hvar_excursions_rentals_2.jpg', $speedboats[10]['gallery'][1] ),
+	catamaran_child_asset_image_url( 'rentals/marinelo60hp/boat_marinello_hvar_excursions_rentals_3.jpg', $speedboats[10]['gallery'][2] ),
+	catamaran_child_asset_image_url( 'rentals/marinelo60hp/boat_marinello_hvar_excursions_rentals_4.jpg', $speedboats[10]['gallery'][3] ),
+);
+
+$boats[1]['image'] = catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.00.41_b1305334.jpg', $boats[1]['image'] );
+$boats[1]['gallery'] = array(
+	catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.00.41_b1305334.jpg', $boats[1]['gallery'][0] ),
+	catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.01.02_42b37261.jpg', $boats[1]['gallery'][1] ),
+	catamaran_child_asset_image_url( 'rentals/Adria_20hp/WhatsApp Slika 2025-09-15 u 21.01.21_01446e8d.jpg', $boats[1]['gallery'][2] ),
 );
 
 $boats[0]['image'] = catamaran_child_asset_image_url( 'rentals/nautica-500/thumb/boat_nautica-500_hvar_excursions_rentals.jpg', $boats[0]['image'] );

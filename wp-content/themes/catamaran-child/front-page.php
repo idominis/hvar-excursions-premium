@@ -216,7 +216,7 @@ $hex_destination_rows = array(
 			<div class="hex-container">
 				<h2 class="hex-destinations__headline">
 					In our arrangement or if you like, in your own...<br>
-					Explore beautiful destinations like
+					Explore beautiful destinations like<br>
 					<span class="hex-destinations__typed-word-wrap">
 						<span class="hex-destinations__typed-word" data-hex-destination-typed data-words='["Hvar","Pakleni Islands","Korcula","Blue Cave","Bol","Dubrovnik"]'>Hvar</span>
 					</span>.
