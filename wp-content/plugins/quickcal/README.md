@@ -1,2 +1,0 @@
-# quickcal
-QuickCal Appointment Plugin

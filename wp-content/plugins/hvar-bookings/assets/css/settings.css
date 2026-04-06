@@ -1,0 +1,167 @@
+.hex-bookings-settings-screen {
+	background:
+		radial-gradient(circle at top, rgba(31, 107, 255, 0.08), transparent 34%),
+		linear-gradient(180deg, #eef5fb 0%, #f8fbfe 100%);
+	color: #102740;
+	font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.hex-bookings-settings {
+	max-width: 1120px;
+	padding-bottom: 56px;
+}
+
+.hex-bookings-app__notice {
+	padding: 14px 16px;
+	border: 1px solid #d8e4f1;
+	background: rgba(255, 255, 255, 0.96);
+	box-shadow: 0 18px 42px rgba(11, 31, 53, 0.08);
+	font-weight: 700;
+}
+
+.hex-bookings-app__notice.is-success {
+	border-color: #bfe3c8;
+	background: #f3fbf5;
+	color: #1b7a3f;
+}
+
+.hex-bookings-app__notice.is-error {
+	border-color: #edc8c8;
+	background: #fff6f6;
+	color: #bf2b2b;
+}
+
+.hex-settings-form {
+	display: grid;
+	gap: 22px;
+}
+
+.hex-settings-section {
+	display: grid;
+	gap: 18px;
+	padding: 22px;
+	border: 1px solid #dbe6f2;
+	background: rgba(255, 255, 255, 0.96);
+	box-shadow: 0 18px 42px rgba(11, 31, 53, 0.08);
+}
+
+.hex-settings-section__head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 14px;
+}
+
+.hex-settings-section__head h2 {
+	margin: 0 0 6px;
+	font-size: 24px;
+}
+
+.hex-settings-section__head p {
+	margin: 0;
+	max-width: 680px;
+	color: #5a6d85;
+	line-height: 1.6;
+}
+
+.hex-settings-list {
+	display: grid;
+	gap: 14px;
+}
+
+.hex-settings-fields {
+	display: grid;
+	gap: 14px;
+}
+
+.hex-settings-fields label {
+	display: grid;
+	gap: 8px;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.hex-settings-fields input {
+	width: 100%;
+	padding: 13px 14px;
+	border: 1px solid #cad8e8;
+	background: #fff;
+	color: #0f2742;
+	font: inherit;
+}
+
+.hex-settings-fields input:focus {
+	outline: 0;
+	border-color: #1f6bff;
+	box-shadow: 0 0 0 3px rgba(31, 107, 255, 0.14);
+}
+
+.hex-settings-row {
+	display: grid;
+	gap: 14px;
+	padding: 16px;
+	border: 1px solid #dbe6f2;
+	background: #f8fbff;
+}
+
+.hex-settings-row label {
+	display: grid;
+	gap: 8px;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.hex-settings-row input {
+	width: 100%;
+	padding: 13px 14px;
+	border: 1px solid #cad8e8;
+	background: #fff;
+	color: #0f2742;
+	font: inherit;
+}
+
+.hex-settings-row input:focus {
+	outline: 0;
+	border-color: #1f6bff;
+	box-shadow: 0 0 0 3px rgba(31, 107, 255, 0.14);
+}
+
+.hex-settings-row__remove {
+	justify-self: start;
+	align-self: end;
+}
+
+.hex-settings-actions {
+	display: flex;
+	justify-content: flex-start;
+}
+
+@media (min-width: 760px) {
+	.hex-settings-fields {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.hex-settings-row {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+		align-items: end;
+	}
+
+	.hex-settings-row.has-coordinates {
+		grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+	}
+}
+
+@media (max-width: 759px) {
+	.hex-settings-section__head {
+		flex-direction: column;
+	}
+
+	.hex-settings-section,
+	.hex-settings-row {
+		padding: 16px;
+	}
+
+	.hex-settings-row__remove {
+		width: 100%;
+	}
+}

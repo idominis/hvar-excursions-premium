@@ -1,0 +1,472 @@
+.hex-contacts-page .top_panel,
+.hex-contacts-page .footer_wrap,
+.hex-contacts-page .sidebar,
+.hex-contacts-page .related_wrap,
+.hex-contacts-page .post_header_wrap_style_style-2,
+.hex-contacts-page .content_wrap_fullscreen > .content > .post_header_wrap {
+  display: none !important;
+}
+
+.hex-contacts-page .page_content_wrap,
+.hex-contacts-page .page_wrap,
+.hex-contacts-page .body_wrap,
+.hex-contacts-page .content_wrap,
+.hex-contacts-page .content_wrap_fullscreen,
+.hex-contacts-page .content_wrap_fullscreen .content,
+.hex-contacts-page .content_wrap > .content,
+.hex-contacts-page .content_wrap_fullscreen .post_item_single,
+.hex-contacts-page .content_wrap_fullscreen .post_content,
+.hex-contacts-page .content_wrap_fullscreen .post_content_single {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.hex-contacts-page [class*=content_wrap] > .content {
+  float: none !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background: transparent !important;
+}
+
+.hex-contacts-page [class*=content_wrap] > .sidebar {
+  display: none !important;
+}
+
+.hex-contacts-shell {
+  background: linear-gradient(180deg, #f4f8fb 0%, #edf5f8 100%);
+  overflow: clip;
+}
+
+.hex-contacts-shell .hex-container,
+.hex-contacts-shell .hex-footer .hex-container,
+.hex-contacts-shell .hex-contacts-hero__content {
+  width: min(1380px, calc(100% - 4rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hex-contacts-shell .hex-nav {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1rem 1.5rem;
+}
+
+.hex-contacts-hero {
+  position: relative;
+  min-height: 92vh;
+  min-height: 92svh;
+  color: #fff;
+  overflow: hidden;
+}
+
+.hex-contacts-hero__media,
+.hex-contacts-hero__overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.hex-contacts-hero__media {
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.05);
+}
+
+.hex-contacts-hero__overlay {
+  background:
+    linear-gradient(118deg, rgba(7, 19, 32, 0.84), rgba(7, 19, 32, 0.48)),
+    radial-gradient(circle at 80% 20%, rgba(41, 72, 208, 0.28), rgba(41, 72, 208, 0) 34%),
+    radial-gradient(circle at 18% 82%, rgba(255, 194, 96, 0.18), rgba(255, 194, 96, 0) 32%);
+}
+
+.hex-contacts-hero__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+  gap: 2rem;
+  align-items: center;
+  margin: 10rem auto 4rem;
+}
+
+.hex-contacts-hero__eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hex-contacts-hero__copy h1,
+.hex-contacts-section__heading h2,
+.hex-contacts-map__copy h2,
+.hex-contacts-cta__inner h2,
+.hex-contacts-hero-card h2 {
+  margin: 0;
+  font-family: var(--theme-font-h1_font-family, "alga", serif);
+  line-height: 0.98;
+}
+
+.hex-contacts-hero__copy h1 {
+  max-width: 11ch;
+  color: #fff;
+  font-size: clamp(2.8rem, 6vw, 5.7rem);
+}
+
+.hex-contacts-hero__copy p,
+.hex-contacts-hero-card p {
+  margin: 1.15rem 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.72;
+}
+
+.hex-contacts-hero__cta,
+.hex-contacts-form__actions,
+.hex-contacts-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.hex-contacts-hero-card,
+.hex-contacts-method-card,
+.hex-contacts-form-panel,
+.hex-contacts-info-panel,
+.hex-contacts-map__frame,
+.hex-contacts-map__copy,
+.hex-contacts-cta__inner {
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 30px;
+  box-shadow: 0 22px 42px rgba(10, 28, 44, 0.1);
+}
+
+.hex-contacts-hero-card {
+  padding: 1.6rem;
+  color: #173049;
+}
+
+.hex-contacts-hero-card h2 {
+  color: #0d314a;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.hex-contacts-hero-card ul,
+.hex-contacts-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.hex-contacts-hero-card li,
+.hex-contacts-info-list li {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.hex-contacts-hero-card strong,
+.hex-contacts-info-list strong {
+  color: #0d314a;
+}
+
+.hex-contacts-hero-card a,
+.hex-contacts-info-list a,
+.hex-contacts-info-list span {
+  color: #35546c;
+}
+
+.hex-contacts-main section {
+  padding: 4.4rem 0;
+}
+
+.hex-contacts-methods {
+  margin-top: -2rem;
+  position: relative;
+  z-index: 3;
+}
+
+.hex-contacts-methods__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.hex-contacts-method-card {
+  padding: 1.55rem 1.4rem;
+}
+
+.hex-contacts-method-card h3,
+.hex-contacts-info-panel h3 {
+  margin: 1rem 0 0;
+  color: #173049;
+  font-size: 1.55rem;
+  line-height: 1.1;
+}
+
+.hex-contacts-method-card p,
+.hex-contacts-info-panel p,
+.hex-contacts-section__heading p,
+.hex-contacts-map__copy p,
+.hex-contacts-notice p {
+  margin: 1rem 0 0;
+  color: #35546c;
+  line-height: 1.72;
+}
+
+.hex-contacts-form-grid,
+.hex-contacts-map__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 1.5rem;
+}
+
+.hex-contacts-form-panel,
+.hex-contacts-info-panel {
+  padding: 1.7rem;
+}
+
+.hex-contacts-section__heading {
+  max-width: 760px;
+  margin-bottom: 1.4rem;
+}
+
+.hex-contacts-section__heading h2,
+.hex-contacts-map__copy h2,
+.hex-contacts-cta__inner h2 {
+  color: #0d314a;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+}
+
+.hex-contacts-notice {
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(23, 48, 73, 0.12);
+  border-left-width: 4px;
+  background: rgba(41, 72, 208, 0.06);
+}
+
+.hex-contacts-notice.is-success {
+  border-color: rgba(72, 161, 125, 0.38);
+  background: rgba(72, 161, 125, 0.12);
+}
+
+.hex-contacts-notice.is-error {
+  border-color: rgba(153, 54, 54, 0.34);
+  background: rgba(153, 54, 54, 0.1);
+}
+
+.hex-contacts-notice strong {
+  display: block;
+  color: #173049;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hex-contacts-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.3rem;
+}
+
+.hex-contacts-form__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hex-contacts-topic {
+  min-height: 38px;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(23, 48, 73, 0.14);
+  background: #eef5f9;
+  color: #173049;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.hex-contacts-topic.is-active,
+.hex-contacts-topic:hover,
+.hex-contacts-topic:focus {
+  border-color: rgba(41, 72, 208, 0.28);
+  background: rgba(41, 72, 208, 0.1);
+  color: #173049;
+}
+
+.hex-contacts-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.hex-contacts-form label {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.hex-contacts-form label span {
+  color: #173049;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.hex-contacts-form input,
+.hex-contacts-form select,
+.hex-contacts-form textarea {
+  width: 100%;
+  min-height: 56px;
+  box-sizing: border-box;
+  border: 1px solid rgba(23, 48, 73, 0.14);
+  background: #f8fbfd;
+  color: #173049;
+  padding: 0.85rem 0.95rem;
+  font: inherit;
+}
+
+.hex-contacts-form textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.hex-contacts-form input::placeholder,
+.hex-contacts-form textarea::placeholder {
+  color: #7a8da0;
+}
+
+.hex-contacts-form input:focus,
+.hex-contacts-form select:focus,
+.hex-contacts-form textarea:focus {
+  border-color: rgba(41, 72, 208, 0.36);
+  box-shadow: 0 0 0 4px rgba(41, 72, 208, 0.08);
+}
+
+.hex-contacts-map__copy,
+.hex-contacts-map__frame {
+  padding: 1.7rem;
+}
+
+.hex-contacts-map__frame iframe {
+  display: block;
+  width: 100%;
+  min-height: 420px;
+  border: 0;
+}
+
+.hex-contacts-cta {
+  padding-top: 2rem !important;
+}
+
+.hex-contacts-cta__inner {
+  padding: 3rem;
+  background:
+    linear-gradient(120deg, rgba(6, 17, 30, 0.9), rgba(10, 45, 73, 0.72)),
+    url('../images/transfers/transfers_1.jpg') center/cover;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 28px 60px rgba(7, 21, 35, 0.18);
+}
+
+.hex-contacts-cta__inner h2,
+.hex-contacts-cta__inner p {
+  color: #fff;
+}
+
+@media (max-width: 1100px) {
+  .hex-contacts-hero__content,
+  .hex-contacts-methods__grid,
+  .hex-contacts-form-grid,
+  .hex-contacts-map__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hex-contacts-shell .hex-container,
+  .hex-contacts-shell .hex-footer .hex-container,
+  .hex-contacts-shell .hex-contacts-hero__content {
+    width: min(100%, calc(100% - 2rem));
+  }
+
+  .hex-contacts-shell .hex-nav {
+    width: min(100%, calc(100% - 1.5rem));
+    margin: 0 auto;
+    padding: 0.85rem 0.75rem 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .hex-contacts-hero {
+    min-height: 980px;
+    min-height: max(980px, 96svh);
+  }
+
+  .hex-contacts-hero__content {
+    margin: 8rem auto 3rem;
+  }
+
+  .hex-contacts-hero__copy h1 {
+    max-width: 10ch;
+    font-size: clamp(2.25rem, 10vw, 3.5rem);
+  }
+
+  .hex-contacts-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .hex-contacts-main section {
+    padding: 3.2rem 0;
+  }
+
+  .hex-contacts-map__frame iframe {
+    min-height: 320px;
+  }
+
+  .hex-contacts-cta__inner {
+    padding: 2rem 1.25rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .hex-contacts-shell .hex-container,
+  .hex-contacts-shell .hex-footer .hex-container,
+  .hex-contacts-shell .hex-contacts-hero__content {
+    width: calc(100% - 1rem);
+  }
+
+  .hex-contacts-shell .hex-nav {
+    width: calc(100% - 1rem);
+    margin: 0 auto;
+    padding: 0.65rem 0.5rem 0;
+  }
+
+  .hex-contacts-hero__cta,
+  .hex-contacts-form__actions,
+  .hex-contacts-cta__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hex-contacts-topic {
+    width: 100%;
+  }
+
+  .hex-contacts-hero-card,
+  .hex-contacts-method-card,
+  .hex-contacts-form-panel,
+  .hex-contacts-info-panel,
+  .hex-contacts-map__frame,
+  .hex-contacts-map__copy,
+  .hex-contacts-cta__inner {
+    border-radius: 22px;
+  }
+}
