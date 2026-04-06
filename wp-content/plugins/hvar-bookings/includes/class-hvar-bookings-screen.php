@@ -107,14 +107,9 @@ class Hex_Bookings_Screen {
 			<p class="hex-bookings-app__eyebrow"><?php esc_html_e( 'Mobile Dispatch', 'hvar-bookings' ); ?></p>
 			<h1><?php esc_html_e( 'Internal Dispatch', 'hvar-bookings' ); ?></h1>
 			<p><?php esc_html_e( 'Fast booking workflow for phones and browsers. Create, review, and edit reservations without the desktop timeline overhead.', 'hvar-bookings' ); ?></p>
-			<?php echo self::internal_nav( 'dispatch' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</div>
-		<div class="hex-dispatch-app__actions">
-			<a class="hex-bookings-app__button" href="<?php echo esc_url( home_url( '/internal-bookings/' ) ); ?>"><?php esc_html_e( 'Desktop Timeline', 'hvar-bookings' ); ?></a>
-			<?php if ( current_user_can( 'manage_hex_bookings' ) ) : ?>
-				<a class="hex-bookings-app__button" href="<?php echo esc_url( home_url( '/internal-bookers/' ) ); ?>"><?php esc_html_e( 'Bookers', 'hvar-bookings' ); ?></a>
-				<a class="hex-bookings-app__button" href="<?php echo esc_url( home_url( '/internal-booking-settings/' ) ); ?>"><?php esc_html_e( 'Settings', 'hvar-bookings' ); ?></a>
-			<?php endif; ?>
+		<div class="hex-dispatch-app__toolbar">
+			<?php echo self::internal_nav( 'dispatch' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</div>
 	</header>
 
@@ -149,7 +144,7 @@ class Hex_Bookings_Screen {
 						<h2><?php esc_html_e( 'Today', 'hvar-bookings' ); ?></h2>
 						<p id="hex-dispatch-today-label"><?php esc_html_e( 'Today’s dispatch board', 'hvar-bookings' ); ?></p>
 					</div>
-					<button type="button" class="hex-bookings-app__button hex-bookings-app__button--primary" data-dispatch-open-form="new"><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></button>
+					<button type="button" class="hex-bookings-app__button hex-bookings-app__button--primary hex-dispatch-sectionhead__cta" data-dispatch-open-form="new"><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></button>
 				</div>
 				<div class="hex-dispatch-chips" id="hex-dispatch-today-filters">
 					<button type="button" class="hex-dispatch-chip is-active" data-filter="scope" data-value="all"><?php esc_html_e( 'All', 'hvar-bookings' ); ?></button>

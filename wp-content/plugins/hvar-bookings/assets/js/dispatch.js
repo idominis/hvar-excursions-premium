@@ -296,6 +296,18 @@
     });
   }
 
+  function skipperModeLabel(skipperMode, fallbackLabel) {
+    if (skipperMode === "without_skipper") {
+      return "Without skipper";
+    }
+
+    if (skipperMode === "with_skipper") {
+      return "With skipper";
+    }
+
+    return fallbackLabel || "--";
+  }
+
   function getSelectOptionData(select) {
     if (!select) {
       return { value: "", label: "", coordinates: "" };
@@ -761,6 +773,7 @@
     var resource = getResourceById(event.resourceId);
     var startLabel = options.showDate ? formatDate(event.start) + " • " + formatEventTimeRange(event) : formatEventTimeRange(event);
     var serviceLabel = titleCase(event.extendedProps.service_type || "");
+    var skipperLabel = skipperModeLabel(event.extendedProps.skipper_mode, event.extendedProps.badge || "--");
     var title = event.title || "Booking";
     var priceBadge = event.extendedProps.booking_price != null
       ? '<span class="hex-dispatch-card__pill">' + escapeHtml("EUR " + Number(event.extendedProps.booking_price).toFixed(2)) + "</span>"
@@ -775,7 +788,7 @@
         '<div class="hex-dispatch-card__title">' + escapeHtml(title) + "</div>" +
         '<div class="hex-dispatch-card__meta">' +
           '<span class="hex-dispatch-card__pill">' + escapeHtml(serviceLabel || "Booking") + "</span>" +
-          '<span class="hex-dispatch-card__pill is-accent">' + escapeHtml(event.extendedProps.badge || "--") + "</span>" +
+          '<span class="hex-dispatch-card__pill is-accent">' + escapeHtml(skipperLabel) + "</span>" +
           priceBadge +
           '<span class="hex-dispatch-card__initials">' + escapeHtml(event.extendedProps.booker_initials || "--") + "</span>" +
         "</div>" +
@@ -909,11 +922,12 @@
     if (!drawer) {
       return;
     }
+    var panel = drawer.querySelector(".hex-dispatch-drawer__panel");
 
     drawer.querySelector(".hex-dispatch-drawer__title").textContent = booking.customer_name || booking.route_summary || ("Booking #" + booking.id);
     drawer.querySelector(".hex-dispatch-drawer__badges").innerHTML =
       '<span class="hex-dispatch-card__pill">' + escapeHtml(titleCase(booking.service_type)) + "</span>" +
-      '<span class="hex-dispatch-card__pill is-accent">' + escapeHtml(titleCase((booking.skipper_mode || "").replace(/_/g, " "))) + "</span>" +
+      '<span class="hex-dispatch-card__pill is-accent">' + escapeHtml(skipperModeLabel(booking.skipper_mode, titleCase((booking.skipper_mode || "").replace(/_/g, " ")))) + "</span>" +
       '<span class="hex-dispatch-card__initials">' + escapeHtml(booking.booker_initials || "--") + "</span>";
 
     var resource = getResourceById(booking.resource_id);
@@ -969,6 +983,9 @@
 
     drawer.setAttribute("data-booking-id", String(booking.id));
     drawer.hidden = false;
+    if (panel) {
+      panel.scrollTop = 0;
+    }
     document.body.classList.add("hex-dispatch-drawer-open");
   }
 
