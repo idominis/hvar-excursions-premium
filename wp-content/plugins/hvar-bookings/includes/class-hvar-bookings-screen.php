@@ -110,11 +110,6 @@ class Hex_Bookings_Screen {
 		</div>
 		<div class="hex-dispatch-app__toolbar">
 			<?php echo self::internal_nav( 'dispatch' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</div>
-	</header>
-
-	<div class="hex-dispatch-shell">
-		<section class="hex-dispatch-top">
 			<div class="hex-dispatch-usercard" id="hex-dispatch-usercard">
 				<div class="hex-dispatch-usercard__badge">--</div>
 				<div class="hex-dispatch-usercard__body">
@@ -123,6 +118,11 @@ class Hex_Bookings_Screen {
 					<span class="hex-dispatch-usercard__email">-</span>
 				</div>
 			</div>
+		</div>
+	</header>
+
+	<div class="hex-dispatch-shell">
+		<section class="hex-dispatch-top">
 			<div class="hex-dispatch-kpis">
 				<div class="hex-dispatch-kpi">
 					<span class="hex-dispatch-kpi__label"><?php esc_html_e( 'Today', 'hvar-bookings' ); ?></span>
@@ -176,36 +176,11 @@ class Hex_Bookings_Screen {
 				<form id="hex-dispatch-form" class="hex-dispatch-form">
 					<input type="hidden" name="booking_id" value="">
 					<div class="hex-dispatch-form__grid">
-						<label>
+						<label class="hex-dispatch-form__full">
 							<span><?php esc_html_e( 'Boat', 'hvar-bookings' ); ?></span>
 							<select name="resource_id" required></select>
 						</label>
-						<label>
-							<span><?php esc_html_e( 'Date', 'hvar-bookings' ); ?></span>
-							<input type="date" name="booking_date" required>
-						</label>
-						<label>
-							<span><?php esc_html_e( 'Start', 'hvar-bookings' ); ?></span>
-							<input type="time" name="start_time">
-						</label>
-						<label>
-							<span><?php esc_html_e( 'End', 'hvar-bookings' ); ?></span>
-							<input type="time" name="end_time">
-						</label>
-						<label class="hex-dispatch-form__toggle">
-							<input type="checkbox" name="is_all_day" value="1">
-							<span><?php esc_html_e( 'All day booking', 'hvar-bookings' ); ?></span>
-						</label>
-						<label>
-							<span><?php esc_html_e( 'Status', 'hvar-bookings' ); ?></span>
-							<select name="status">
-								<option value="draft"><?php esc_html_e( 'Draft', 'hvar-bookings' ); ?></option>
-								<option value="confirmed"><?php esc_html_e( 'Confirmed', 'hvar-bookings' ); ?></option>
-								<option value="blocked"><?php esc_html_e( 'Blocked', 'hvar-bookings' ); ?></option>
-								<option value="cancelled"><?php esc_html_e( 'Cancelled', 'hvar-bookings' ); ?></option>
-							</select>
-						</label>
-						<label>
+						<label class="hex-dispatch-form__full">
 							<span><?php esc_html_e( 'Service', 'hvar-bookings' ); ?></span>
 							<select name="service_type">
 								<option value="rental"><?php esc_html_e( 'Rental', 'hvar-bookings' ); ?></option>
@@ -213,6 +188,31 @@ class Hex_Bookings_Screen {
 								<option value="excursion"><?php esc_html_e( 'Excursion', 'hvar-bookings' ); ?></option>
 								<option value="taxi"><?php esc_html_e( 'Taxi', 'hvar-bookings' ); ?></option>
 							</select>
+						</label>
+						<label class="hex-dispatch-form__full">
+							<span><?php esc_html_e( 'Status', 'hvar-bookings' ); ?></span>
+							<select name="status">
+								<option value="draft"><?php esc_html_e( 'Draft', 'hvar-bookings' ); ?></option>
+								<option value="confirmed" selected><?php esc_html_e( 'Confirmed', 'hvar-bookings' ); ?></option>
+								<option value="blocked"><?php esc_html_e( 'Blocked', 'hvar-bookings' ); ?></option>
+								<option value="cancelled"><?php esc_html_e( 'Cancelled', 'hvar-bookings' ); ?></option>
+							</select>
+						</label>
+						<label class="hex-dispatch-form__third">
+							<span><?php esc_html_e( 'Date', 'hvar-bookings' ); ?></span>
+							<input type="date" name="booking_date" required>
+						</label>
+						<label class="hex-dispatch-form__third">
+							<span><?php esc_html_e( 'Start', 'hvar-bookings' ); ?></span>
+							<input type="time" name="start_time">
+						</label>
+						<label class="hex-dispatch-form__third">
+							<span><?php esc_html_e( 'End', 'hvar-bookings' ); ?></span>
+							<input type="time" name="end_time">
+						</label>
+						<label class="hex-dispatch-form__toggle">
+							<input type="checkbox" name="is_all_day" value="1">
+							<span><?php esc_html_e( 'All day booking', 'hvar-bookings' ); ?></span>
 						</label>
 						<label class="hex-dispatch-form__mode hex-dispatch-form__mode--rental">
 							<span><?php esc_html_e( 'Skipper', 'hvar-bookings' ); ?></span>
@@ -239,7 +239,11 @@ class Hex_Bookings_Screen {
 						</label>
 						<label>
 							<span><?php esc_html_e( 'Passengers', 'hvar-bookings' ); ?></span>
-							<input type="number" name="passengers" min="0" step="1">
+							<div class="hex-dispatch-passengers">
+								<button type="button" class="hex-dispatch-passengers__button" data-passenger-step="-1" aria-label="<?php esc_attr_e( 'Decrease passengers', 'hvar-bookings' ); ?>">-</button>
+								<input type="number" name="passengers" min="0" step="1" inputmode="numeric">
+								<button type="button" class="hex-dispatch-passengers__button" data-passenger-step="1" aria-label="<?php esc_attr_e( 'Increase passengers', 'hvar-bookings' ); ?>">+</button>
+							</div>
 						</label>
 						<label class="hex-dispatch-form__mode hex-dispatch-form__mode--rental hex-dispatch-form__full">
 							<span><?php esc_html_e( 'Route / Area', 'hvar-bookings' ); ?></span>
@@ -380,7 +384,7 @@ class Hex_Bookings_Screen {
 		<nav class="hex-dispatch-nav" aria-label="<?php esc_attr_e( 'Dispatch navigation', 'hvar-bookings' ); ?>">
 			<button type="button" class="hex-dispatch-nav__item is-active" data-screen-target="today"><?php esc_html_e( 'Today', 'hvar-bookings' ); ?></button>
 			<button type="button" class="hex-dispatch-nav__item" data-screen-target="mine"><?php esc_html_e( 'My Bookings', 'hvar-bookings' ); ?></button>
-			<button type="button" class="hex-dispatch-nav__item" data-screen-target="new"><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></button>
+			<button type="button" class="hex-dispatch-nav__item hex-dispatch-nav__item--new" data-screen-target="new"><span aria-hidden="true">+</span><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></button>
 			<button type="button" class="hex-dispatch-nav__item" data-screen-target="boats"><?php esc_html_e( 'Boats', 'hvar-bookings' ); ?></button>
 			<button type="button" class="hex-dispatch-nav__item" data-screen-target="more"><?php esc_html_e( 'More', 'hvar-bookings' ); ?></button>
 		</nav>
@@ -475,19 +479,19 @@ class Hex_Bookings_Screen {
 			<h2><?php esc_html_e( 'Timeline Board', 'hvar-bookings' ); ?></h2>
 			<p><?php esc_html_e( 'Filter the fleet, focus on your own work, and manage bookings directly on the resource timeline.', 'hvar-bookings' ); ?></p>
 			<form id="hex-bookings-filters" class="hex-bookings-filters">
-				<label>
+				<label class="hex-bookings-filters__field hex-bookings-filters__field--category">
 					<span><?php esc_html_e( 'Category', 'hvar-bookings' ); ?></span>
 					<select name="category">
 						<option value=""><?php esc_html_e( 'All categories', 'hvar-bookings' ); ?></option>
 					</select>
 				</label>
-				<label>
+				<label class="hex-bookings-filters__field hex-bookings-filters__field--resource">
 					<span><?php esc_html_e( 'Resource', 'hvar-bookings' ); ?></span>
 					<select name="resource_id">
 						<option value=""><?php esc_html_e( 'All boats', 'hvar-bookings' ); ?></option>
 					</select>
 				</label>
-				<label>
+				<label class="hex-bookings-filters__field hex-bookings-filters__field--service">
 					<span><?php esc_html_e( 'Service', 'hvar-bookings' ); ?></span>
 					<select name="service_type">
 						<option value=""><?php esc_html_e( 'All services', 'hvar-bookings' ); ?></option>
@@ -497,13 +501,13 @@ class Hex_Bookings_Screen {
 						<option value="taxi"><?php esc_html_e( 'Taxi', 'hvar-bookings' ); ?></option>
 					</select>
 				</label>
-				<label>
+				<label class="hex-bookings-filters__field hex-bookings-filters__field--booker">
 					<span><?php esc_html_e( 'Booker', 'hvar-bookings' ); ?></span>
 					<select name="booker_user_id" disabled>
 						<option value=""><?php esc_html_e( 'All bookers', 'hvar-bookings' ); ?></option>
 					</select>
 				</label>
-				<label>
+				<label class="hex-bookings-filters__field hex-bookings-filters__field--status">
 					<span><?php esc_html_e( 'Status', 'hvar-bookings' ); ?></span>
 					<select name="status">
 						<option value=""><?php esc_html_e( 'All statuses', 'hvar-bookings' ); ?></option>
@@ -513,7 +517,7 @@ class Hex_Bookings_Screen {
 						<option value="cancelled"><?php esc_html_e( 'Cancelled', 'hvar-bookings' ); ?></option>
 					</select>
 				</label>
-				<label class="hex-bookings-filters__toggle">
+				<label class="hex-bookings-filters__toggle hex-bookings-filters__field hex-bookings-filters__field--mine">
 					<input type="checkbox" name="only_mine" value="1">
 					<span><?php esc_html_e( 'Only my bookings', 'hvar-bookings' ); ?></span>
 				</label>
@@ -521,6 +525,9 @@ class Hex_Bookings_Screen {
 					<button type="button" class="hex-bookings-app__button" data-hex-clear-filters><?php esc_html_e( 'Clear filters', 'hvar-bookings' ); ?></button>
 				</div>
 			</form>
+			<div class="hex-bookings-calendar-toolbar-extra">
+				<button type="button" class="hex-bookings-app__button hex-bookings-app__button--primary" data-hex-calendar-new-booking><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></button>
+			</div>
 			<div id="hex-bookings-calendar-root" class="hex-bookings-calendar-root"></div>
 			<div id="hex-bookings-event-popover" class="hex-bookings-popover" hidden>
 				<button type="button" class="hex-bookings-popover__close" data-hex-popover-close aria-label="<?php esc_attr_e( 'Close booking preview', 'hvar-bookings' ); ?>">&times;</button>
@@ -848,15 +855,22 @@ class Hex_Bookings_Screen {
 					<tbody>
 						<?php foreach ( $bookers as $booker ) : ?>
 							<tr>
-								<td><span class="hex-bookers-table__initials"><?php echo esc_html( $booker['initials'] ?: '--' ); ?></span></td>
-								<td><?php echo esc_html( $booker['display_name'] ); ?></td>
-								<td><?php echo esc_html( $booker['email'] ); ?></td>
+								<td data-label="<?php esc_attr_e( 'Initials', 'hvar-bookings' ); ?>"><span class="hex-bookers-table__initials"><?php echo esc_html( $booker['initials'] ?: '--' ); ?></span></td>
+								<td data-label="<?php esc_attr_e( 'Name', 'hvar-bookings' ); ?>"><?php echo esc_html( $booker['display_name'] ); ?></td>
+								<td data-label="<?php esc_attr_e( 'Email', 'hvar-bookings' ); ?>"><?php echo esc_html( $booker['email'] ); ?></td>
 								<td><?php echo esc_html( $booker['phone'] ?: '—' ); ?></td>
-								<td><?php echo esc_html( $booker['role_label'] ); ?></td>
-								<td>
+								<td data-label="<?php esc_attr_e( 'Role', 'hvar-bookings' ); ?>"><?php echo esc_html( $booker['role_label'] ); ?></td>
+								<td class="hex-bookers-table__actions" data-label="<?php esc_attr_e( 'Actions', 'hvar-bookings' ); ?>">
 									<a class="hex-bookings-app__button" href="<?php echo esc_url( add_query_arg( array( 'edit_user' => $booker['id'] ), home_url( '/internal-bookers/' ) ) ); ?>"><?php esc_html_e( 'Edit', 'hvar-bookings' ); ?></a>
 									<?php if ( ! empty( $booker['is_protected'] ) ) : ?>
 										<span class="hex-bookers-table__protected"><?php esc_html_e( 'Protected', 'hvar-bookings' ); ?></span>
+									<?php elseif ( ! empty( $booker['can_delete'] ) ) : ?>
+										<form class="hex-bookers-table__delete" method="post" onsubmit="return confirm('<?php echo esc_js( __( 'Delete this booker? Existing bookings will remain visible, but this user will no longer be able to log in.', 'hvar-bookings' ) ); ?>');">
+											<?php wp_nonce_field( 'hex_booker_save', 'hex_booker_nonce' ); ?>
+											<input type="hidden" name="hex_booker_action" value="delete">
+											<input type="hidden" name="user_id" value="<?php echo esc_attr( $booker['id'] ); ?>">
+											<button type="submit" class="hex-bookings-app__button hex-bookings-app__button--danger"><span aria-hidden="true">&times;</span><?php esc_html_e( 'Delete', 'hvar-bookings' ); ?></button>
+										</form>
 									<?php endif; ?>
 								</td>
 							</tr>
@@ -935,6 +949,11 @@ class Hex_Bookings_Screen {
 	protected static function handle_booker_save() {
 		$action       = sanitize_key( wp_unslash( $_POST['hex_booker_action'] ?? '' ) );
 		$user_id      = isset( $_POST['user_id'] ) ? (int) $_POST['user_id'] : 0;
+
+		if ( 'delete' === $action ) {
+			return self::handle_booker_delete( $user_id );
+		}
+
 		$display_name = sanitize_text_field( wp_unslash( $_POST['display_name'] ?? '' ) );
 		$user_email   = sanitize_email( wp_unslash( $_POST['user_email'] ?? '' ) );
 		$user_pass    = (string) wp_unslash( $_POST['user_pass'] ?? '' );
@@ -942,6 +961,12 @@ class Hex_Bookings_Screen {
 		$initials     = strtoupper( preg_replace( '/[^A-Za-z]/', '', (string) wp_unslash( $_POST['hex_booker_initials'] ?? '' ) ) );
 		$role         = sanitize_key( wp_unslash( $_POST['booker_role'] ?? 'booker' ) );
 		$is_protected = Hex_Bookings_Plugin::is_protected_admin_user( $user_id );
+		$previous_role = '';
+
+		if ( 'update' === $action && $user_id > 0 ) {
+			$previous_user = get_userdata( $user_id );
+			$previous_role = $previous_user && ! empty( $previous_user->roles ) ? (string) $previous_user->roles[0] : '';
+		}
 
 		if ( ! $is_protected && ! in_array( $role, array( 'booker', 'booking_manager' ), true ) ) {
 			return new WP_Error( 'hex_invalid_role', __( 'Please choose a valid role.', 'hvar-bookings' ) );
@@ -1001,7 +1026,106 @@ class Hex_Bookings_Screen {
 		update_user_meta( $user_id, 'hex_booker_phone', $phone );
 		update_user_meta( $user_id, 'hex_booker_initials', substr( $initials, 0, 10 ) );
 
+		if ( defined( 'HEX_BOOKER_ACCESS_EMAILS_ENABLED' ) && HEX_BOOKER_ACCESS_EMAILS_ENABLED && ! $is_protected && ( 'create' === $action || ( '' !== $previous_role && $previous_role !== $role ) ) ) {
+			self::send_booker_access_email( $user_id, $role, 'create' === $action ? $user_pass : '' );
+		}
+
 		return 'create' === $action ? __( 'Booker created successfully.', 'hvar-bookings' ) : __( 'Booker updated successfully.', 'hvar-bookings' );
+	}
+
+	protected static function handle_booker_delete( $user_id ) {
+		if ( $user_id <= 0 ) {
+			return new WP_Error( 'hex_missing_user', __( 'Booker not found.', 'hvar-bookings' ) );
+		}
+
+		if ( get_current_user_id() === $user_id ) {
+			return new WP_Error( 'hex_delete_self', __( 'You cannot delete your own booker account while you are logged in.', 'hvar-bookings' ) );
+		}
+
+		if ( Hex_Bookings_Plugin::is_protected_admin_user( $user_id ) ) {
+			return new WP_Error( 'hex_delete_protected', __( 'The protected administrator account cannot be deleted.', 'hvar-bookings' ) );
+		}
+
+		$user = get_userdata( $user_id );
+		if ( ! $user instanceof WP_User ) {
+			return new WP_Error( 'hex_missing_user', __( 'Booker not found.', 'hvar-bookings' ) );
+		}
+
+		if ( ! array_intersect( array( 'booker', 'booking_manager' ), (array) $user->roles ) ) {
+			return new WP_Error( 'hex_delete_invalid_role', __( 'Only Booker and Booking Manager accounts can be deleted from this screen.', 'hvar-bookings' ) );
+		}
+
+		if ( ! function_exists( 'wp_delete_user' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/user.php';
+		}
+
+		$deleted = wp_delete_user( $user_id, get_current_user_id() );
+
+		if ( ! $deleted ) {
+			return new WP_Error( 'hex_delete_failed', __( 'Booker could not be deleted.', 'hvar-bookings' ) );
+		}
+
+		return __( 'Booker deleted successfully.', 'hvar-bookings' );
+	}
+
+	protected static function send_booker_access_email( $user_id, $role, $temporary_password = '' ) {
+		$user = get_userdata( $user_id );
+		if ( ! $user || empty( $user->user_email ) ) {
+			return false;
+		}
+
+		$role_label = self::role_label( $role );
+		$login_url  = home_url( '/internal-dispatch/' );
+		$site_name  = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
+		$subject    = sprintf(
+			/* translators: %s: user role label. */
+			__( 'Your Hvar Excursions %s access is ready', 'hvar-bookings' ),
+			$role_label
+		);
+
+		$lines = array(
+			sprintf(
+				/* translators: %s: user display name. */
+				__( 'Hi %s,', 'hvar-bookings' ),
+				$user->display_name ?: $user->user_login
+			),
+			'',
+			sprintf(
+				/* translators: %s: user role label. */
+				__( 'You have been assigned the %s role for the Hvar Excursions booking app.', 'hvar-bookings' ),
+				$role_label
+			),
+			sprintf(
+				/* translators: %s: login URL. */
+				__( 'You can log in here: %s', 'hvar-bookings' ),
+				$login_url
+			),
+			sprintf(
+				/* translators: %s: user login. */
+				__( 'Username: %s', 'hvar-bookings' ),
+				$user->user_login
+			),
+		);
+
+		if ( '' !== $temporary_password ) {
+			$lines[] = sprintf(
+				/* translators: %s: temporary password. */
+				__( 'Temporary password: %s', 'hvar-bookings' ),
+				$temporary_password
+			);
+		}
+
+		$lines[] = '';
+		$lines[] = __( 'If you already changed your password, keep using your current password.', 'hvar-bookings' );
+		$lines[] = '';
+		$lines[] = $site_name;
+
+		return wp_mail(
+			$user->user_email,
+			$subject,
+			implode( "\n", $lines ),
+			array( 'Content-Type: text/plain; charset=UTF-8' )
+		);
 	}
 
 	protected static function get_bookers() {
@@ -1016,6 +1140,7 @@ class Hex_Bookings_Screen {
 
 		foreach ( $users as $user ) {
 			$role         = ! empty( $user->roles ) ? $user->roles[0] : 'booker';
+			$is_protected = Hex_Bookings_Plugin::is_protected_admin_user( $user->ID );
 			$items[] = array(
 				'id'           => (int) $user->ID,
 				'display_name' => (string) $user->display_name,
@@ -1024,7 +1149,8 @@ class Hex_Bookings_Screen {
 				'initials'     => (string) get_user_meta( $user->ID, 'hex_booker_initials', true ),
 				'role'         => $role,
 				'role_label'   => self::role_label( $role ),
-				'is_protected' => Hex_Bookings_Plugin::is_protected_admin_user( $user->ID ),
+				'is_protected' => $is_protected,
+				'can_delete'   => ! $is_protected && get_current_user_id() !== (int) $user->ID && in_array( $role, array( 'booker', 'booking_manager' ), true ),
 			);
 		}
 

@@ -719,16 +719,23 @@
           slotLabelFormat: { weekday: "short", day: "numeric" },
         },
       },
+      buttonText: {
+        resourceTimelineDay: "Day",
+        resourceTimelineWeek: "Week",
+        resourceTimelineMonth: "Month",
+      },
       headerToolbar: {
-        left: "prev,next today newBookingButton",
+        left: "prev,next todayJumpButton",
         center: "title",
         right: "resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth",
       },
       customButtons: {
-        newBookingButton: {
-          text: "New Booking",
+        todayJumpButton: {
+          text: "Today",
           click: function () {
-            resetForm();
+            if (state.calendar) {
+              state.calendar.today();
+            }
           },
         },
       },
@@ -750,7 +757,16 @@
       scrollTime: "08:00:00",
       resources: mapResources(getFilteredResources()),
       eventContent: renderEventContent,
-      datesSet: function () {
+      datesSet: function (info) {
+        var root = $("#hex-bookings-calendar-root");
+        if (root) {
+          root.setAttribute("data-view-type", info.view.type || "");
+          var todayJumpButton = root.querySelector(".fc-todayJumpButton-button");
+          if (todayJumpButton) {
+            var showTodayJump = info.view.type === "resourceTimelineMonth" || window.matchMedia("(max-width: 760px)").matches;
+            todayJumpButton.style.display = showTodayJump ? "inline-flex" : "none";
+          }
+        }
         refreshEvents().catch(function (error) {
           setMessage(error.message || "Could not load bookings.", "error");
         });
@@ -923,6 +939,9 @@
 
     form.addEventListener("submit", saveBookingFromForm);
     $('[data-hex-reset-form]').addEventListener("click", function () {
+      resetForm();
+    });
+    $('[data-hex-calendar-new-booking]').addEventListener("click", function () {
       resetForm();
     });
     $('[data-hex-delete-booking]').addEventListener("click", deleteBooking);

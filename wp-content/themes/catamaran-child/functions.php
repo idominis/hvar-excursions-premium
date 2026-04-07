@@ -509,23 +509,34 @@ if ( ! function_exists( 'catamaran_child_add_rentals_body_class' ) ) {
 if ( ! function_exists( 'catamaran_child_rentals_document_title' ) ) {
 	add_filter( 'pre_get_document_title', 'catamaran_child_rentals_document_title' );
 	function catamaran_child_rentals_document_title( $title ) {
+		if ( is_front_page() || is_home() ) {
+			return 'Bumbar Rent';
+		}
+
 		if ( catamaran_child_is_rentals_route() ) {
-			return 'Rentals | Hvar Excursions';
+			return 'Rentals | Bumbar Rent';
 		}
 
 		if ( catamaran_child_is_excursions_route() ) {
-			return 'Excursions | Hvar Excursions';
+			return 'Excursions | Bumbar Rent';
 		}
 
 		if ( catamaran_child_is_transfers_route() ) {
-			return 'Transfers | Hvar Excursions';
+			return 'Transfers | Bumbar Rent';
 		}
 
 		if ( catamaran_child_is_contacts_route() ) {
-			return 'Contact | Hvar Excursions';
+			return 'Contact | Bumbar Rent';
 		}
 
-		return $title;
+		return str_replace( 'Catamaran', 'Bumbar Rent', (string) $title );
+	}
+}
+
+if ( ! function_exists( 'catamaran_child_document_title_brand' ) ) {
+	add_filter( 'document_title', 'catamaran_child_document_title_brand' );
+	function catamaran_child_document_title_brand( $title ) {
+		return str_replace( 'Catamaran', 'Bumbar Rent', (string) $title );
 	}
 }
 

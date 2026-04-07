@@ -78,6 +78,13 @@
 	align-items: center;
 	gap: 14px;
 	padding: 16px;
+	box-sizing: border-box;
+}
+
+.hex-dispatch-app__toolbar .hex-dispatch-usercard {
+	gap: 10px;
+	padding: 10px 12px;
+	box-shadow: 0 10px 22px rgba(11, 31, 53, 0.07);
 }
 
 .hex-dispatch-usercard__badge {
@@ -93,9 +100,17 @@
 	letter-spacing: 0.08em;
 }
 
+.hex-dispatch-app__toolbar .hex-dispatch-usercard__badge {
+	width: 34px;
+	height: 34px;
+	font-size: 12px;
+	letter-spacing: 0.06em;
+}
+
 .hex-dispatch-usercard__body {
 	display: grid;
 	gap: 2px;
+	min-width: 0;
 }
 
 .hex-dispatch-usercard__label,
@@ -112,9 +127,21 @@
 	font-size: 16px;
 }
 
+.hex-dispatch-app__toolbar .hex-dispatch-usercard__name {
+	font-size: 14px;
+	line-height: 1.2;
+}
+
 .hex-dispatch-usercard__email {
 	font-size: 13px;
 	color: #58708c;
+}
+
+.hex-dispatch-app__toolbar .hex-dispatch-usercard__email {
+	font-size: 12px;
+	line-height: 1.25;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .hex-dispatch-kpis {
@@ -331,6 +358,7 @@
 .hex-dispatch-form select,
 .hex-dispatch-form textarea {
 	width: 100%;
+	box-sizing: border-box;
 	padding: 13px 14px;
 	border: 1px solid #cad8e8;
 	background: #fbfdff;
@@ -360,6 +388,42 @@
 .hex-dispatch-form textarea {
 	min-height: 110px;
 	resize: vertical;
+}
+
+.hex-dispatch-passengers {
+	display: grid;
+	grid-template-columns: 44px minmax(0, 1fr) 44px;
+	align-items: stretch;
+}
+
+.hex-dispatch-passengers .hex-dispatch-passengers__button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #cad8e8;
+	background: #eef4ff;
+	color: #1b4fae;
+	font-size: 20px;
+	font-weight: 800;
+	cursor: pointer;
+}
+
+.hex-dispatch-passengers .hex-dispatch-passengers__button:hover,
+.hex-dispatch-passengers .hex-dispatch-passengers__button:focus {
+	background: #dfeaff;
+	border-color: #9fbce8;
+	outline: none;
+}
+
+.hex-dispatch-passengers input {
+	border-left: 0;
+	border-right: 0;
+	text-align: center;
+}
+
+.hex-dispatch-passengers input::-webkit-outer-spin-button,
+.hex-dispatch-passengers input::-webkit-inner-spin-button {
+	margin: 0;
 }
 
 .hex-dispatch-form__toggle {
@@ -464,9 +528,44 @@
 }
 
 .hex-dispatch-form__actions {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr;
 	gap: 10px;
+}
+
+.hex-dispatch-form__actions .hex-bookings-app__button {
+	width: 100%;
+	min-height: 48px;
+	box-sizing: border-box;
+	padding: 12px 16px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.hex-dispatch-form__actions [data-dispatch-reset-form] {
+	border-color: #7f97b2;
+	background: #dbe6f2;
+	color: #17304d;
+}
+
+.hex-dispatch-form__actions .hex-bookings-app__button--danger {
+	border-color: #b53636;
+	background: #f7d6d6;
+	color: #7f1717;
+}
+
+.hex-dispatch-form__actions [data-dispatch-reset-form]:hover,
+.hex-dispatch-form__actions [data-dispatch-reset-form]:focus {
+	background: #c9d8e8;
+	border-color: #6f88a4;
+	color: #102740;
+}
+
+.hex-dispatch-form__actions .hex-bookings-app__button--danger:hover,
+.hex-dispatch-form__actions .hex-bookings-app__button--danger:focus {
+	background: #efbaba;
+	border-color: #9f2626;
+	color: #681010;
 }
 
 .hex-dispatch-boatgroup {
@@ -523,17 +622,20 @@
 
 .hex-dispatch-nav {
 	position: fixed;
-	left: 12px;
-	right: 12px;
+	left: 50%;
+	right: auto;
 	bottom: 12px;
 	display: grid;
 	grid-template-columns: repeat(5, minmax(0, 1fr));
 	gap: 8px;
+	width: min(760px, calc(100% - 24px));
 	padding: 10px;
 	border: 1px solid rgba(211, 223, 238, 0.9);
 	background: rgba(255, 255, 255, 0.96);
 	backdrop-filter: blur(12px);
 	box-shadow: 0 18px 42px rgba(11, 31, 53, 0.15);
+	transform: translateX(-50%);
+	z-index: 20;
 }
 
 .hex-dispatch-nav__item {
@@ -552,6 +654,44 @@
 	border-color: #cfe0fa;
 	background: #edf4ff;
 	color: #1b4fae;
+}
+
+.hex-dispatch-nav__item--new {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 56px;
+	padding: 14px 16px;
+	border-color: #f08a24;
+	background: linear-gradient(135deg, #ffb347 0%, #f08a24 52%, #d96a12 100%);
+	box-shadow: 0 18px 36px rgba(217, 106, 18, 0.34);
+	color: #ffffff;
+	font-size: 12px;
+	letter-spacing: 0.06em;
+	transform: scale(1.06);
+}
+
+.hex-dispatch-nav__item--new span {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.22);
+	font-size: 20px;
+	line-height: 1;
+}
+
+.hex-dispatch-nav__item--new.is-active,
+.hex-dispatch-nav__item--new:hover,
+.hex-dispatch-nav__item--new:focus {
+	border-color: #d96a12;
+	background: linear-gradient(135deg, #ffc36a 0%, #f08a24 52%, #c8570d 100%);
+	color: #ffffff;
+	box-shadow: 0 22px 42px rgba(217, 106, 18, 0.4);
 }
 
 .hex-dispatch-drawer[hidden] {
@@ -741,14 +881,35 @@
 		padding-inline: 24px;
 	}
 
+	.hex-dispatch-form__grid {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		column-gap: 18px;
+		row-gap: 14px;
+	}
+
+	.hex-dispatch-form__grid > label {
+		grid-column: span 3;
+	}
+
+	.hex-dispatch-form__third {
+		grid-column: span 2 !important;
+	}
+
+	.hex-dispatch-form__full {
+		grid-column: 1 / -1 !important;
+	}
+
 	.hex-dispatch-app__toolbar {
 		display: flex;
 		align-items: center;
-		gap: 10px;
+		justify-content: space-between;
+		gap: 14px;
 	}
 
 	.hex-dispatch-app__toolbar .hex-bookings-app__subnav {
 		flex-wrap: nowrap;
+		flex: 1 1 auto;
+		min-width: 0;
 	}
 
 	.hex-dispatch-app__toolbar .hex-bookings-app__subnav-link {
@@ -757,8 +918,9 @@
 		letter-spacing: 0.04em;
 	}
 
-	.hex-dispatch-form__grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+	.hex-dispatch-app__toolbar .hex-dispatch-usercard {
+		flex: 0 0 auto;
+		max-width: 280px;
 	}
 
 	.hex-dispatch-boatgroup__grid {
@@ -775,6 +937,10 @@
 	.hex-dispatch-drawer__actions {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		align-items: stretch;
+	}
+
+	.hex-dispatch-form__actions {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 }
 
@@ -799,6 +965,11 @@
 		padding-right: 2px;
 	}
 
+	.hex-dispatch-app__toolbar .hex-dispatch-usercard {
+		width: 100%;
+		max-width: 100%;
+	}
+
 	.hex-dispatch-app__toolbar .hex-bookings-app__subnav-link {
 		width: 100%;
 		padding: 10px 12px;
@@ -808,8 +979,44 @@
 		white-space: normal;
 	}
 
+	.hex-dispatch-chips {
+		justify-content: center;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+		gap: 8px;
+		padding-bottom: 2px;
+	}
+
+	.hex-dispatch-chips::-webkit-scrollbar {
+		display: none;
+	}
+
+	.hex-dispatch-chip {
+		flex: 0 0 auto;
+		min-height: 40px;
+		padding: 10px 14px;
+		font-size: 13px;
+		white-space: nowrap;
+	}
+
 	.hex-dispatch-nav__item {
 		font-size: 10px;
 		padding-inline: 4px;
+	}
+
+	.hex-dispatch-nav__item--new {
+		min-height: 54px;
+		padding: 12px 8px;
+		font-size: 10px;
+		letter-spacing: 0.05em;
+		transform: scale(1.04);
+	}
+
+	.hex-dispatch-nav__item--new span {
+		width: 20px;
+		height: 20px;
+		font-size: 18px;
 	}
 }

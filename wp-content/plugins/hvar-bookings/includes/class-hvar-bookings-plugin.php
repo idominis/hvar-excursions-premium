@@ -29,6 +29,13 @@ class Hex_Bookings_Plugin {
 		add_action( 'template_redirect', array( 'Hex_Bookings_Screen', 'maybe_render' ), 1 );
 		add_action( 'rest_api_init', array( $this, 'register_rest' ) );
 		add_action( 'admin_menu', array( $this, 'register_admin_menu' ) );
+		add_action( 'login_enqueue_scripts', array( $this, 'render_login_branding' ) );
+		add_filter( 'login_headerurl', array( $this, 'filter_login_header_url' ) );
+		add_filter( 'login_headertext', array( $this, 'filter_login_header_text' ) );
+		add_filter( 'login_redirect', array( $this, 'filter_login_redirect' ), 10, 3 );
+		add_filter( 'gettext', array( $this, 'filter_login_gettext' ), 10, 3 );
+		add_filter( 'gettext_with_context', array( $this, 'filter_login_gettext_with_context' ), 10, 4 );
+		add_filter( 'option_blogname', array( $this, 'filter_login_site_name' ) );
 	}
 
 	public function maybe_upgrade() {
@@ -173,6 +180,144 @@ class Hex_Bookings_Plugin {
 			'hex-booking-settings',
 			array( $this, 'render_settings_redirect' )
 		);
+	}
+
+	public function render_login_branding() {
+		$logo_url = '';
+		$logo_path = trailingslashit( get_stylesheet_directory() ) . 'assets/images/logo/logo-bumbar-rent-hvar-excursions.png';
+
+		if ( file_exists( $logo_path ) ) {
+			$logo_url = trailingslashit( get_stylesheet_directory_uri() ) . 'assets/images/logo/logo-bumbar-rent-hvar-excursions.png';
+		}
+		?>
+		<style>
+			body.login {
+				background:
+					radial-gradient(circle at top left, rgba(31, 107, 255, 0.16), transparent 34rem),
+					linear-gradient(180deg, #eef5fb 0%, #f8fbfe 100%);
+			}
+
+			body.login div#login {
+				width: min(420px, calc(100% - 32px));
+				padding-top: 7vh;
+			}
+
+			body.login h1 a {
+				<?php if ( '' !== $logo_url ) : ?>
+					background-image: url("<?php echo esc_url( $logo_url ); ?>");
+					background-size: contain;
+					background-position: center;
+					width: 260px;
+					height: 88px;
+				<?php else : ?>
+					background-image: none;
+					width: auto;
+					height: auto;
+					text-indent: 0;
+					font-size: 24px;
+					font-weight: 800;
+					color: #102740;
+				<?php endif; ?>
+				margin-bottom: 22px;
+			}
+
+			body.login form {
+				border: 1px solid #d7e4f2;
+				border-radius: 24px;
+				box-shadow: 0 24px 60px rgba(11, 31, 53, 0.14);
+			}
+
+			body.login .button-primary {
+				background: #1f6bff;
+				border-color: #1f6bff;
+				border-radius: 10px;
+				font-weight: 700;
+			}
+
+			body.login #nav,
+			body.login #backtoblog {
+				text-align: center;
+			}
+		</style>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				var backLink = document.querySelector("#backtoblog a");
+				var loginInput = document.getElementById("user_login");
+
+				if (backLink) {
+					backLink.textContent = "Back to Bumbar Rent";
+				}
+
+				if (loginInput) {
+					loginInput.setAttribute("autocomplete", "email");
+					loginInput.setAttribute("inputmode", "email");
+				}
+
+				if (document.title) {
+					document.title = document.title.replace(/Catamaran/g, "Bumbar Rent");
+				}
+			});
+		</script>
+		<?php
+	}
+
+	public function filter_login_header_url() {
+		return home_url( '/internal-dispatch/' );
+	}
+
+	public function filter_login_header_text() {
+		return __( 'Hvar Excursions Dispatch', 'hvar-bookings' );
+	}
+
+	public function filter_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
+		if ( $user instanceof WP_User && ( user_can( $user, 'access_hex_bookings' ) || user_can( $user, 'manage_hex_bookings' ) ) ) {
+			return home_url( '/internal-dispatch/' );
+		}
+
+		return $redirect_to;
+	}
+
+	public function filter_login_gettext( $translation, $text, $domain ) {
+		if ( $this->is_login_request() && 'Username or Email Address' === $text ) {
+			return __( 'Email Address', 'hvar-bookings' );
+		}
+
+		if ( $this->is_login_request() && 'Please enter your username or email address. You will receive an email message with instructions on how to reset your password.' === $text ) {
+			return __( 'Please enter your email address. You will receive an email message with instructions on how to reset your password.', 'hvar-bookings' );
+		}
+
+		if ( $this->is_login_request() && in_array( $text, array( '&larr; Go to %s', '&larr; Back to %s' ), true ) ) {
+			return __( 'Back to %s', 'hvar-bookings' );
+		}
+
+		return $translation;
+	}
+
+	public function filter_login_gettext_with_context( $translation, $text, $context, $domain ) {
+		if ( $this->is_login_request() && 'site' === $context && in_array( $text, array( '&larr; Go to %s', '&larr; Back to %s' ), true ) ) {
+			return __( 'Back to %s', 'hvar-bookings' );
+		}
+
+		return $translation;
+	}
+
+	public function filter_login_site_name( $site_name ) {
+		if ( $this->is_login_request() ) {
+			return 'Bumbar Rent';
+		}
+
+		return $site_name;
+	}
+
+	protected function is_login_request() {
+		global $pagenow;
+
+		if ( 'wp-login.php' === $pagenow ) {
+			return true;
+		}
+
+		$script_name = isset( $_SERVER['SCRIPT_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SCRIPT_NAME'] ) ) : '';
+		return false !== strpos( $script_name, 'wp-login.php' );
 	}
 
 	public function render_admin_redirect() {

@@ -572,9 +572,9 @@
     form.elements.booking_id.value = "";
     form.elements.resource_id.value = state.resources.length ? String(state.resources[0].id) : "";
     form.elements.booking_date.value = todayValue();
-    form.elements.start_time.value = "09:00";
-    form.elements.end_time.value = "17:00";
-    form.elements.status.value = "draft";
+    form.elements.start_time.value = "09:30";
+    form.elements.end_time.value = "18:30";
+    form.elements.status.value = "confirmed";
     form.elements.service_type.value = "rental";
     form.elements.skipper_mode.value = "with_skipper";
     if (form.elements.fuel_included) {
@@ -1250,6 +1250,17 @@
     form.elements.is_all_day.addEventListener("change", toggleTimeFields);
     form.elements.pickup_location.addEventListener("change", syncTransferCustomFields);
     form.elements.dropoff_location.addEventListener("change", syncTransferCustomFields);
+
+    document.querySelectorAll("[data-passenger-step]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var input = form.elements.passengers;
+        var step = Number(button.getAttribute("data-passenger-step") || 0);
+        var current = input.value ? Number(input.value) : 0;
+        var next = Math.max(Number(input.min || 0), current + step);
+        input.value = String(next);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+    });
 
     document.querySelectorAll("[data-hex-map-check]").forEach(function (button) {
       button.addEventListener("click", function () {

@@ -145,8 +145,16 @@
 }
 
 .hex-bookings-app__button--danger {
-	border-color: #c74242;
-	color: #c74242;
+	background: #d92d20;
+	border-color: #d92d20;
+	color: #ffffff;
+}
+
+.hex-bookings-app__button--danger:hover,
+.hex-bookings-app__button--danger:focus {
+	background: #b42318;
+	border-color: #b42318;
+	color: #ffffff;
 }
 
 .hex-bookings-app__legend,
@@ -194,6 +202,49 @@
 	margin: 0;
 	color: #5a6a80;
 	line-height: 1.65;
+}
+
+.hex-bookings-screen .hex-bookings-app__actions {
+	justify-content: flex-end;
+}
+
+.hex-bookings-screen .hex-bookings-app__user,
+.hex-bookings-screen .hex-bookings-app__actions .hex-bookings-app__button {
+	box-sizing: border-box;
+	min-height: 78px;
+}
+
+.hex-bookings-screen .hex-bookings-app__user {
+	width: 100%;
+	min-width: 0;
+}
+
+.hex-bookings-screen .hex-bookings-app__legend {
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.hex-bookings-screen .hex-bookings-legend__item {
+	gap: 10px;
+	padding: 12px 12px 11px;
+}
+
+.hex-bookings-screen .hex-bookings-legend__swatch {
+	width: 11px;
+	height: 11px;
+	flex-basis: 11px;
+	margin-top: 4px;
+}
+
+.hex-bookings-screen .hex-bookings-legend__item strong {
+	margin-bottom: 4px;
+	font-size: 13px;
+	line-height: 1.25;
+}
+
+.hex-bookings-screen .hex-bookings-legend__item p {
+	font-size: 12px;
+	line-height: 1.45;
 }
 
 .hex-bookings-app__grid {
@@ -320,7 +371,11 @@
 
 .hex-bookings-filters {
 	display: grid;
-	grid-template-columns: repeat(6, minmax(0, 1fr)) auto;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-areas:
+		"category resource service"
+		"booker status mine"
+		". . actions";
 	gap: 12px;
 	margin-top: 18px;
 	padding: 16px;
@@ -360,6 +415,8 @@
 	align-items: center;
 	gap: 10px;
 	align-self: end;
+	min-height: 47px;
+	box-sizing: border-box;
 	padding: 12px 14px;
 	border: 1px solid #cdd9e7;
 	background: #ffffff;
@@ -372,6 +429,46 @@
 .hex-bookings-filters__actions {
 	display: flex;
 	align-items: end;
+	justify-content: flex-end;
+}
+
+.hex-bookings-filters__field--category {
+	grid-area: category;
+}
+
+.hex-bookings-filters__field--resource {
+	grid-area: resource;
+}
+
+.hex-bookings-filters__field--service {
+	grid-area: service;
+}
+
+.hex-bookings-filters__field--booker {
+	grid-area: booker;
+}
+
+.hex-bookings-filters__field--status {
+	grid-area: status;
+}
+
+.hex-bookings-filters__field--mine {
+	grid-area: mine;
+}
+
+.hex-bookings-filters__actions {
+	grid-area: actions;
+}
+
+.hex-bookings-calendar-toolbar-extra {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 12px;
+}
+
+.hex-bookings-calendar-toolbar-extra .hex-bookings-app__button {
+	min-width: 152px;
+	min-height: 44px;
 }
 
 .hex-bookings-calendar-root.is-loading {
@@ -502,11 +599,27 @@
 	color: #16304d;
 }
 
-.hex-bookers-table td:last-child {
-	display: flex;
+.hex-bookers-table__actions {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(96px, 1fr));
 	align-items: center;
 	gap: 10px;
-	flex-wrap: wrap;
+	min-width: 220px;
+}
+
+.hex-bookers-table__delete {
+	display: flex;
+	margin: 0;
+	width: 100%;
+}
+
+.hex-bookers-table__actions > .hex-bookings-app__button,
+.hex-bookers-table__delete .hex-bookings-app__button {
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 0;
+	padding: 10px 14px;
+	gap: 7px;
 }
 
 .hex-bookers-table__initials {
@@ -577,11 +690,72 @@
 	font-weight: 800;
 }
 
+.fc .fc-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: nowrap;
+}
+
+.fc .fc-toolbar-chunk {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: nowrap;
+}
+
 .fc .fc-button {
-	border-radius: 0;
+	min-height: 42px;
+	border-radius: 12px;
+	border: 1px solid #c9d8e8 !important;
+	background: #ffffff !important;
+	box-shadow: 0 8px 18px rgba(15, 39, 66, 0.08);
 	padding: 0.7em 1em;
 	text-transform: uppercase;
+	color: #17304d !important;
 	letter-spacing: 0.06em;
+	font-weight: 800;
+}
+
+.fc .fc-button:hover,
+.fc .fc-button:focus {
+	background: #f4f8fc !important;
+	border-color: #aebfd4 !important;
+	color: #102740 !important;
+}
+
+.fc .fc-button.fc-button-active {
+	background: #173f73 !important;
+	border-color: #173f73 !important;
+	color: #ffffff !important;
+	box-shadow: 0 12px 24px rgba(23, 63, 115, 0.24);
+}
+
+.fc .fc-prev-button,
+.fc .fc-next-button {
+	min-width: 42px;
+	padding-inline: 0.7em;
+}
+
+.fc .fc-today-button {
+	background: #edf4ff !important;
+	border-color: #c7dbf7 !important;
+	color: #1b4fae !important;
+}
+
+.fc .fc-newBookingButton-button {
+	background: linear-gradient(135deg, #ffb347 0%, #f08a24 52%, #d96a12 100%) !important;
+	border-color: #d96a12 !important;
+	color: #ffffff !important;
+	box-shadow: 0 12px 26px rgba(217, 106, 18, 0.26);
+}
+
+.fc .fc-newBookingButton-button:hover,
+.fc .fc-newBookingButton-button:focus {
+	background: linear-gradient(135deg, #ffbc5f 0%, #f2942d 52%, #cf620f 100%) !important;
+	border-color: #cf620f !important;
+	color: #ffffff !important;
 }
 
 .fc .fc-resource-group {
@@ -648,6 +822,20 @@
 	letter-spacing: 0.08em;
 }
 
+@media (min-width: 1181px) {
+	.hex-bookings-screen .hex-bookings-app__actions {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(220px, 1fr));
+		width: min(520px, 100%);
+		justify-content: end;
+		align-items: stretch;
+	}
+
+	.hex-bookings-screen .hex-bookings-app__actions > * {
+		width: 100%;
+	}
+}
+
 @media (max-width: 1180px) {
 	.hex-bookings-app__grid {
 		grid-template-columns: 1fr;
@@ -659,11 +847,24 @@
 
 	.hex-bookings-filters {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-areas:
+			"category resource"
+			"service booker"
+			"status mine"
+			"actions actions";
 	}
 
 	.hex-bookings-app__actions {
 		display: grid;
 		grid-template-columns: 1fr;
+	}
+
+	.hex-bookings-screen .hex-bookings-app__legend {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.hex-bookings-calendar-toolbar-extra {
+		justify-content: flex-start;
 	}
 }
 
@@ -682,11 +883,115 @@
 
 	.hex-bookings-filters {
 		grid-template-columns: 1fr;
+		grid-template-areas:
+			"category"
+			"resource"
+			"service"
+			"booker"
+			"status"
+			"mine"
+			"actions";
+	}
+
+	.hex-bookings-screen .hex-bookings-app__legend {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.hex-bookings-screen .hex-bookings-app__user,
+	.hex-bookings-screen .hex-bookings-app__actions .hex-bookings-app__button {
+		min-height: 0;
+	}
+
+	.hex-bookings-calendar-toolbar-extra {
+		justify-content: stretch;
+	}
+
+	.hex-bookings-calendar-toolbar-extra .hex-bookings-app__button {
+		width: 100%;
+	}
+
+	.hex-bookers-table-wrap {
+		overflow-x: visible;
+	}
+
+	.hex-bookers-table,
+	.hex-bookers-table thead,
+	.hex-bookers-table tbody,
+	.hex-bookers-table tr,
+	.hex-bookers-table td {
+		display: block;
+		width: 100%;
+	}
+
+	.hex-bookers-table thead {
+		display: none;
+	}
+
+	.hex-bookers-table tr {
+		box-sizing: border-box;
+		margin-bottom: 14px;
+		padding: 12px 14px;
+		border: 1px solid #d9e4f0;
+		background: #ffffff;
+		box-shadow: 0 14px 34px rgba(11, 31, 53, 0.08);
+	}
+
+	.hex-bookers-table td {
+		box-sizing: border-box;
+		display: grid;
+		grid-template-columns: minmax(92px, 34%) minmax(0, 1fr);
+		align-items: center;
+		gap: 12px;
+		padding: 10px 0;
+		border-bottom: 1px solid #edf2f8;
+		word-break: break-word;
+	}
+
+	.hex-bookers-table td::before {
+		content: attr(data-label);
+		color: #6b7f98;
+		font-size: 11px;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.hex-bookers-table td:nth-child(4)::before {
+		content: "Phone";
+	}
+
+	.hex-bookers-table td:last-child {
+		border-bottom: 0;
+	}
+
+	.hex-bookers-table__actions {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		min-width: 0;
+		padding-top: 14px;
+	}
+
+	.hex-bookers-table__actions::before {
+		grid-column: 1 / -1;
+	}
+
+	.hex-bookers-table__protected {
+		grid-column: 1 / -1;
+		justify-content: center;
 	}
 
 	.fc .fc-toolbar {
 		display: grid;
 		gap: 10px;
+	}
+
+	.fc .fc-toolbar-chunk {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.fc .fc-toolbar-chunk:last-child {
+		justify-content: flex-start;
 	}
 
 	.hex-bookings-popover {
