@@ -287,6 +287,7 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 		$response_booking = self::prepare_booking_for_response( self::get_booking_row( $booking_id ) );
 		$confirmation     = Hex_Bookings_Documents::maybe_send_booking_confirmation( $response_booking );
 		$manager_note     = Hex_Bookings_Documents::build_manager_notification( $response_booking );
+		$google_sheet     = Hex_Bookings_Google_Sheets::sync_booking_change( null, $response_booking );
 
 		return rest_ensure_response(
 			array(
@@ -295,6 +296,7 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 				'event'   => self::map_booking_to_event( $response_booking ),
 				'confirmation' => $confirmation,
 				'manager_notification' => $manager_note,
+				'google_sheet' => $google_sheet,
 			)
 		);
 	}
@@ -326,6 +328,7 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 		$response_booking = self::prepare_booking_for_response( $updated );
 		$confirmation     = Hex_Bookings_Documents::maybe_send_booking_confirmation( $response_booking );
 		$manager_note     = Hex_Bookings_Documents::build_manager_notification( $response_booking );
+		$google_sheet     = Hex_Bookings_Google_Sheets::sync_booking_change( $existing, $response_booking );
 
 		return rest_ensure_response(
 			array(
@@ -334,6 +337,7 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 				'event'   => self::map_booking_to_event( $response_booking ),
 				'confirmation' => $confirmation,
 				'manager_notification' => $manager_note,
+				'google_sheet' => $google_sheet,
 			)
 		);
 	}
@@ -364,11 +368,14 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 
 		$updated = self::get_booking_row( $booking_id );
 		self::insert_audit_entry( $booking_id, 'cancelled', $existing, $updated );
+		$response_booking = self::prepare_booking_for_response( $updated );
+		$google_sheet     = Hex_Bookings_Google_Sheets::sync_booking_change( $existing, $response_booking );
 
 		return rest_ensure_response(
 			array(
 				'message' => __( 'Booking cancelled.', 'hvar-bookings' ),
-				'booking' => self::prepare_booking_for_response( $updated ),
+				'booking' => $response_booking,
+				'google_sheet' => $google_sheet,
 			)
 		);
 	}
@@ -532,6 +539,18 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 
 		if ( ! $existing ) {
 			$payload['created_at'] = current_time( 'mysql', true );
+		}
+
+		if ( null === $payload['booking_price'] ) {
+			return new WP_Error( 'hex_booking_price_required', __( 'Booked Price is required.', 'hvar-bookings' ), array( 'status' => 400 ) );
+		}
+
+		if ( null === $payload['advance_amount'] ) {
+			return new WP_Error( 'hex_advance_amount_required', __( 'Advance Charged is required.', 'hvar-bookings' ), array( 'status' => 400 ) );
+		}
+
+		if ( (float) $payload['booking_price'] < 0 || (float) $payload['advance_amount'] < 0 ) {
+			return new WP_Error( 'hex_booking_money_invalid', __( 'Booked Price and Advance Charged cannot be negative.', 'hvar-bookings' ), array( 'status' => 400 ) );
 		}
 
 		if ( ! empty( $payload['generate_confirmation'] ) && empty( $payload['customer_email'] ) ) {

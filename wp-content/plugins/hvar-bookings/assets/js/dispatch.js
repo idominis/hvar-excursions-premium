@@ -73,6 +73,34 @@
     return next;
   }
 
+  function openNativePicker(field) {
+    if (!field || field.disabled || field.readOnly) {
+      return;
+    }
+
+    field.focus({ preventScroll: true });
+    if (typeof field.showPicker === "function") {
+      try {
+        field.showPicker();
+      } catch (error) {
+        // Some browsers only allow showPicker from direct user activation.
+      }
+    }
+  }
+
+  function bindNativePickerFields(form) {
+    ["booking_date", "start_time", "end_time"].forEach(function (fieldName) {
+      var field = form && form.elements[fieldName];
+      if (!field) {
+        return;
+      }
+
+      field.addEventListener("click", function () {
+        openNativePicker(field);
+      });
+    });
+  }
+
   async function request(path, options) {
     var response = await fetch(hexBookingsConfig.restUrl + path, Object.assign({
       headers: {
@@ -1242,6 +1270,7 @@
     }
 
     form.addEventListener("submit", saveForm);
+    bindNativePickerFields(form);
     form.elements.service_type.addEventListener("change", function () {
       syncServiceModeUI();
       syncSkipperRules();

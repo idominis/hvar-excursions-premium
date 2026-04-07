@@ -21,6 +21,7 @@ define( 'HEX_BOOKINGS_URL', plugin_dir_url( __FILE__ ) );
 
 require_once HEX_BOOKINGS_DIR . 'includes/class-hvar-bookings-installer.php';
 require_once HEX_BOOKINGS_DIR . 'includes/class-hvar-bookings-documents.php';
+require_once HEX_BOOKINGS_DIR . 'includes/class-hvar-bookings-google-sheets.php';
 require_once HEX_BOOKINGS_DIR . 'includes/class-hvar-bookings-rest-controller.php';
 require_once HEX_BOOKINGS_DIR . 'includes/class-hvar-bookings-screen.php';
 require_once HEX_BOOKINGS_DIR . 'includes/class-hvar-bookings-plugin.php';

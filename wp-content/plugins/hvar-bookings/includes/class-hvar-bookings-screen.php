@@ -283,11 +283,11 @@ class Hex_Bookings_Screen {
 						</label>
 						<label class="hex-dispatch-form__money">
 							<span><?php esc_html_e( 'Booked Price (EUR)', 'hvar-bookings' ); ?></span>
-							<input type="number" name="booking_price" min="0" step="0.01" inputmode="decimal">
+							<input type="number" name="booking_price" min="0" step="0.01" inputmode="decimal" required>
 						</label>
 						<label class="hex-dispatch-form__money">
 							<span><?php esc_html_e( 'Advance Charged (EUR)', 'hvar-bookings' ); ?></span>
-							<input type="number" name="advance_amount" min="0" step="0.01" inputmode="decimal">
+							<input type="number" name="advance_amount" min="0" step="0.01" inputmode="decimal" required>
 						</label>
 						<label class="hex-dispatch-form__toggle hex-dispatch-form__mode hex-dispatch-form__mode--rental">
 							<input type="checkbox" name="fuel_included" value="1">
@@ -340,7 +340,7 @@ class Hex_Bookings_Screen {
 					</div>
 					<div class="hex-dispatch-form__actions">
 						<button type="submit" class="hex-bookings-app__button hex-bookings-app__button--primary"><?php esc_html_e( 'Save Booking', 'hvar-bookings' ); ?></button>
-						<button type="button" class="hex-bookings-app__button" data-dispatch-reset-form><?php esc_html_e( 'Reset', 'hvar-bookings' ); ?></button>
+						<button type="button" class="hex-bookings-app__button hex-bookings-app__button--new" data-dispatch-reset-form><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></button>
 						<button type="button" class="hex-bookings-app__button hex-bookings-app__button--danger" data-dispatch-cancel-booking hidden><?php esc_html_e( 'Cancel Booking', 'hvar-bookings' ); ?></button>
 					</div>
 				</form>
@@ -621,6 +621,17 @@ class Hex_Bookings_Screen {
 
 				<div class="hex-bookings-form__row">
 					<label>
+						<span><?php esc_html_e( 'Booked Price (EUR)', 'hvar-bookings' ); ?></span>
+						<input type="number" name="booking_price" min="0" step="0.01" inputmode="decimal" required>
+					</label>
+					<label>
+						<span><?php esc_html_e( 'Advance Charged (EUR)', 'hvar-bookings' ); ?></span>
+						<input type="number" name="advance_amount" min="0" step="0.01" inputmode="decimal" required>
+					</label>
+				</div>
+
+				<div class="hex-bookings-form__row">
+					<label>
 						<span><?php esc_html_e( 'Passengers', 'hvar-bookings' ); ?></span>
 						<input type="number" name="passengers" min="0" step="1">
 					</label>
@@ -638,9 +649,9 @@ class Hex_Bookings_Screen {
 				<div class="hex-bookings-form__message" id="hex-bookings-form-message" aria-live="polite"></div>
 
 				<div class="hex-bookings-form__actions">
-					<button type="submit" class="hex-bookings-app__button hex-bookings-app__button--primary"><?php esc_html_e( 'Save Booking', 'hvar-bookings' ); ?></button>
-					<button type="button" class="hex-bookings-app__button" data-hex-reset-form><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></button>
-					<button type="button" class="hex-bookings-app__button hex-bookings-app__button--danger" data-hex-delete-booking hidden><?php esc_html_e( 'Cancel Booking', 'hvar-bookings' ); ?></button>
+					<button type="submit" class="hex-bookings-app__button hex-bookings-app__button--primary hex-bookings-form__button hex-bookings-form__button--save"><?php esc_html_e( 'Save Booking', 'hvar-bookings' ); ?></button>
+					<button type="button" class="hex-bookings-app__button hex-bookings-app__button--new hex-bookings-form__button hex-bookings-form__button--new" data-hex-reset-form><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></button>
+					<button type="button" class="hex-bookings-app__button hex-bookings-app__button--danger hex-bookings-form__button hex-bookings-form__button--cancel" data-hex-delete-booking hidden><?php esc_html_e( 'Cancel Booking', 'hvar-bookings' ); ?></button>
 				</div>
 			</form>
 		</div>

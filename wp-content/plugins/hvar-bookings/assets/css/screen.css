@@ -144,6 +144,20 @@
 	color: #ffffff;
 }
 
+.hex-bookings-app__button--new {
+	border-color: #f08a24;
+	background: linear-gradient(135deg, #ffb347 0%, #f08a24 52%, #d96a12 100%);
+	box-shadow: 0 12px 24px rgba(217, 106, 18, 0.22);
+	color: #ffffff;
+}
+
+.hex-bookings-app__button--new:hover,
+.hex-bookings-app__button--new:focus {
+	background: linear-gradient(135deg, #ffc36a 0%, #f08a24 52%, #c8570d 100%);
+	border-color: #d96a12;
+	color: #ffffff;
+}
+
 .hex-bookings-app__button--danger {
 	background: #d92d20;
 	border-color: #d92d20;
@@ -524,14 +538,100 @@
 	width: auto;
 }
 
+.hex-bookings-form input[type="date"],
+.hex-bookings-form input[type="time"] {
+	cursor: pointer;
+}
+
 .hex-bookings-form__actions {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr;
 	gap: 12px;
+}
+
+.hex-bookings-form__actions .hex-bookings-app__button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 48px;
+	min-height: 48px;
+	box-sizing: border-box;
+	padding: 11px 10px;
+	font-size: 13px;
+	line-height: 1.1;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.hex-bookings-form__actions [data-hex-reset-form] {
+	border-color: #f08a24;
+	background: linear-gradient(135deg, #ffb347 0%, #f08a24 52%, #d96a12 100%);
+	box-shadow: 0 12px 24px rgba(217, 106, 18, 0.22);
+	color: #ffffff;
+}
+
+.hex-bookings-form__actions [data-hex-reset-form]:hover,
+.hex-bookings-form__actions [data-hex-reset-form]:focus {
+	background: linear-gradient(135deg, #ffc36a 0%, #f08a24 52%, #c8570d 100%);
+	border-color: #d96a12;
+	color: #ffffff;
+}
+
+#hex-bookings-form .hex-bookings-form__button--save {
+	background: #1f6bff !important;
+	border-color: #1f6bff !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+#hex-bookings-form .hex-bookings-form__button--new {
+	background: linear-gradient(135deg, #ffb347 0%, #f08a24 52%, #d96a12 100%) !important;
+	border-color: #f08a24 !important;
+	box-shadow: 0 12px 24px rgba(217, 106, 18, 0.22) !important;
+	color: #ffffff !important;
+}
+
+#hex-bookings-form .hex-bookings-form__button--cancel {
+	background: #d92d20 !important;
+	border-color: #d92d20 !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+#hex-bookings-form .hex-bookings-form__button--save:hover,
+#hex-bookings-form .hex-bookings-form__button--save:focus {
+	background: #1557d6 !important;
+	border-color: #1557d6 !important;
+	color: #ffffff !important;
+}
+
+#hex-bookings-form .hex-bookings-form__button--new:hover,
+#hex-bookings-form .hex-bookings-form__button--new:focus {
+	background: linear-gradient(135deg, #ffc36a 0%, #f08a24 52%, #c8570d 100%) !important;
+	border-color: #d96a12 !important;
+	color: #ffffff !important;
+}
+
+#hex-bookings-form .hex-bookings-form__button--cancel:hover,
+#hex-bookings-form .hex-bookings-form__button--cancel:focus {
+	background: #b42318 !important;
+	border-color: #b42318 !important;
+	color: #ffffff !important;
 }
 
 .hex-bookings-form__book-as[hidden] {
 	display: none !important;
+}
+
+@media (min-width: 761px) {
+	.hex-bookings-form__actions {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	#hex-bookings-form .hex-bookings-form__actions {
+		grid-template-columns: 1fr;
+	}
 }
 
 .hex-bookings-form__message {

@@ -390,6 +390,11 @@
 	resize: vertical;
 }
 
+.hex-dispatch-form input[type="date"],
+.hex-dispatch-form input[type="time"] {
+	cursor: pointer;
+}
+
 .hex-dispatch-passengers {
 	display: grid;
 	grid-template-columns: 44px minmax(0, 1fr) 44px;
@@ -534,38 +539,58 @@
 }
 
 .hex-dispatch-form__actions .hex-bookings-app__button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
+	height: 48px;
 	min-height: 48px;
 	box-sizing: border-box;
-	padding: 12px 16px;
-	font-size: 14px;
+	padding: 11px 10px;
+	font-size: 13px;
+	line-height: 1.1;
 	text-align: center;
+	white-space: nowrap;
 }
 
 .hex-dispatch-form__actions [data-dispatch-reset-form] {
-	border-color: #7f97b2;
-	background: #dbe6f2;
-	color: #17304d;
+	border-color: #f08a24;
+	background: linear-gradient(135deg, #ffb347 0%, #f08a24 52%, #d96a12 100%);
+	box-shadow: 0 12px 24px rgba(217, 106, 18, 0.22);
+	color: #ffffff;
+}
+
+.hex-dispatch-form__actions .hex-bookings-app__button--primary {
+	border-color: #1f6bff;
+	background: #1f6bff;
+	color: #ffffff;
+}
+
+.hex-dispatch-form__actions .hex-bookings-app__button--new {
+	border-color: #f08a24;
+	background: linear-gradient(135deg, #ffb347 0%, #f08a24 52%, #d96a12 100%);
+	box-shadow: 0 12px 24px rgba(217, 106, 18, 0.22);
+	color: #ffffff;
 }
 
 .hex-dispatch-form__actions .hex-bookings-app__button--danger {
-	border-color: #b53636;
-	background: #f7d6d6;
-	color: #7f1717;
+	border-color: #d92d20;
+	background: #d92d20;
+	color: #ffffff;
 }
 
 .hex-dispatch-form__actions [data-dispatch-reset-form]:hover,
 .hex-dispatch-form__actions [data-dispatch-reset-form]:focus {
-	background: #c9d8e8;
-	border-color: #6f88a4;
-	color: #102740;
+	background: linear-gradient(135deg, #ffc36a 0%, #f08a24 52%, #c8570d 100%);
+	border-color: #d96a12;
+	color: #ffffff;
 }
 
 .hex-dispatch-form__actions .hex-bookings-app__button--danger:hover,
 .hex-dispatch-form__actions .hex-bookings-app__button--danger:focus {
-	background: #efbaba;
-	border-color: #9f2626;
-	color: #681010;
+	background: #b42318;
+	border-color: #b42318;
+	color: #ffffff;
 }
 
 .hex-dispatch-boatgroup {

@@ -70,6 +70,34 @@
     ].join("-");
   }
 
+  function openNativePicker(field) {
+    if (!field || field.disabled || field.readOnly) {
+      return;
+    }
+
+    field.focus({ preventScroll: true });
+    if (typeof field.showPicker === "function") {
+      try {
+        field.showPicker();
+      } catch (error) {
+        // Some browsers only allow showPicker from direct user activation.
+      }
+    }
+  }
+
+  function bindNativePickerFields(form) {
+    ["booking_date", "start_time", "end_time"].forEach(function (fieldName) {
+      var field = form && form.elements[fieldName];
+      if (!field) {
+        return;
+      }
+
+      field.addEventListener("click", function () {
+        openNativePicker(field);
+      });
+    });
+  }
+
   function setMessage(message, type) {
     var node = $("#hex-bookings-form-message");
     if (!node) {
@@ -251,6 +279,8 @@
     form.elements.booking_date.value = toDateValue(new Date());
     form.elements.start_time.value = "09:00";
     form.elements.end_time.value = "17:00";
+    form.elements.booking_price.value = "";
+    form.elements.advance_amount.value = "";
 
     if (prefill) {
       Object.keys(prefill).forEach(function (key) {
@@ -291,6 +321,8 @@
     form.elements.customer_phone.value = booking.customer_phone || "";
     form.elements.route_summary.value = booking.route_summary || "";
     form.elements.passengers.value = booking.passengers || "";
+    form.elements.booking_price.value = booking.booking_price == null ? "" : booking.booking_price;
+    form.elements.advance_amount.value = booking.advance_amount == null ? "" : booking.advance_amount;
     form.elements.internal_notes.value = booking.internal_notes || "";
     form.elements.is_all_day.checked = Number(booking.is_all_day) === 1;
     form.elements.start_time.value = booking.start_time ? booking.start_time.slice(0, 5) : "";
@@ -317,6 +349,8 @@
       customer_phone: form.elements.customer_phone.value,
       route_summary: form.elements.route_summary.value,
       passengers: form.elements.passengers.value ? Number(form.elements.passengers.value) : 0,
+      booking_price: form.elements.booking_price.value,
+      advance_amount: form.elements.advance_amount.value,
       internal_notes: form.elements.internal_notes.value,
       source: "wp_internal",
     };
@@ -938,6 +972,7 @@
     }
 
     form.addEventListener("submit", saveBookingFromForm);
+    bindNativePickerFields(form);
     $('[data-hex-reset-form]').addEventListener("click", function () {
       resetForm();
     });
