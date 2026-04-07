@@ -851,15 +851,29 @@ TEXT;
 	}
 
 	protected static function confirmation_logo_path() {
+		$logo_files = array(
+			'logo-bumbar-rent-hvar-excursions_black.png',
+			'logo-bumbar-rent-hvar-excursions-black.png',
+			'logo-bumbar-rent-hvar-excursions.png',
+		);
+
+		$base_dirs = array();
 		if ( function_exists( 'get_stylesheet_directory' ) ) {
-			$path = trailingslashit( get_stylesheet_directory() ) . 'assets/images/logo/logo-bumbar-rent-hvar-excursions.png';
-			if ( file_exists( $path ) ) {
-				return $path;
+			$base_dirs[] = trailingslashit( get_stylesheet_directory() ) . 'assets/images/logo/';
+		}
+
+		$base_dirs[] = ABSPATH . 'wp-content/themes/catamaran-child/assets/images/logo/';
+
+		foreach ( $base_dirs as $base_dir ) {
+			foreach ( $logo_files as $logo_file ) {
+				$path = $base_dir . $logo_file;
+				if ( file_exists( $path ) ) {
+					return $path;
+				}
 			}
 		}
 
-		$path = ABSPATH . 'wp-content/themes/catamaran-child/assets/images/logo/logo-bumbar-rent-hvar-excursions.png';
-		return file_exists( $path ) ? $path : '';
+		return '';
 	}
 
 	protected static function get_resource( $resource_id ) {
