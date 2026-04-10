@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/hvarexcu/public_html/staging/
+    - /usr/bin/rsync -av --exclude='.git/' --exclude='.github/' --exclude='.cpanel.yml' ./ $DEPLOYPATH
