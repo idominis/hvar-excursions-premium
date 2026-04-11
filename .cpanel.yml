@@ -1,5 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/hvarexcu/public_html/staging/
-    - /usr/bin/rsync -av --exclude='.git/' --exclude='.github/' --exclude='.cpanel.yml' ./ $DEPLOYPATH
+    - export DEPLOYPATH=/home/hvarexcu/public_html/staging/wp-content/
+    - /usr/bin/rsync -av --exclude='hvar-smtp.php' ./wp-content/mu-plugins/ $DEPLOYPATH/mu-plugins/
+    - /usr/bin/rsync -av ./wp-content/plugins/hvar-bookings/ $DEPLOYPATH/plugins/hvar-bookings/
+    - /usr/bin/rsync -av ./wp-content/themes/catamaran-child/ $DEPLOYPATH/themes/catamaran-child/
