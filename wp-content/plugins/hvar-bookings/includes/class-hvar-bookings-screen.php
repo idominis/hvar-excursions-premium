@@ -129,7 +129,7 @@ class Hex_Bookings_Screen {
 					<strong id="hex-dispatch-today-count">0</strong>
 				</div>
 				<div class="hex-dispatch-kpi">
-					<span class="hex-dispatch-kpi__label"><?php esc_html_e( 'My Upcoming', 'hvar-bookings' ); ?></span>
+					<span class="hex-dispatch-kpi__label"><?php esc_html_e( 'My Bookings', 'hvar-bookings' ); ?></span>
 					<strong id="hex-dispatch-mine-count">0</strong>
 				</div>
 			</div>
@@ -160,10 +160,12 @@ class Hex_Bookings_Screen {
 				<div class="hex-dispatch-sectionhead">
 					<div>
 						<h2><?php esc_html_e( 'My Bookings', 'hvar-bookings' ); ?></h2>
-						<p><?php esc_html_e( 'Your upcoming reservations for the next two weeks.', 'hvar-bookings' ); ?></p>
+						<p><?php esc_html_e( 'All your bookings, with today or the next upcoming booking highlighted.', 'hvar-bookings' ); ?></p>
 					</div>
 				</div>
+				<div class="hex-dispatch-list-meta" id="hex-dispatch-my-meta"></div>
 				<div class="hex-dispatch-list" id="hex-dispatch-my-list"></div>
+				<div class="hex-dispatch-pagination" id="hex-dispatch-my-pagination"></div>
 			</section>
 
 			<section class="hex-dispatch-view" data-screen="new">

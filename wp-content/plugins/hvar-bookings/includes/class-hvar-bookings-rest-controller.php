@@ -195,17 +195,28 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 		$status      = sanitize_key( (string) $request->get_param( 'status' ) );
 		$service     = sanitize_key( (string) $request->get_param( 'service_type' ) );
 		$only_mine   = rest_sanitize_boolean( $request->get_param( 'only_mine' ) );
+		$all_dates   = rest_sanitize_boolean( $request->get_param( 'all_dates' ) );
 
-		if ( empty( $date_from ) ) {
+		if ( ! current_user_can( 'manage_hex_bookings' ) ) {
+			$only_mine = true;
+		}
+
+		if ( ! $all_dates && empty( $date_from ) ) {
 			$date_from = gmdate( 'Y-m-01' );
 		}
 
-		if ( empty( $date_to ) ) {
+		if ( ! $all_dates && empty( $date_to ) ) {
 			$date_to = gmdate( 'Y-m-t', strtotime( $date_from ) );
 		}
 
-		$sql    = "SELECT * FROM {$table} WHERE deleted_at IS NULL AND booking_date BETWEEN %s AND %s";
-		$params = array( $date_from, $date_to );
+		$sql    = "SELECT * FROM {$table} WHERE deleted_at IS NULL";
+		$params = array();
+
+		if ( ! $all_dates ) {
+			$sql      .= ' AND booking_date BETWEEN %s AND %s';
+			$params[] = $date_from;
+			$params[] = $date_to;
+		}
 
 		if ( $resource_id > 0 ) {
 			$sql      .= ' AND resource_id = %d';
@@ -231,7 +242,7 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 		}
 
 		$sql   .= ' ORDER BY booking_date ASC, start_time ASC, id ASC';
-		$query  = $wpdb->prepare( $sql, $params );
+		$query  = ! empty( $params ) ? $wpdb->prepare( $sql, $params ) : $sql;
 
 		$rows   = array_map( array( __CLASS__, 'prepare_booking_for_response' ), $wpdb->get_results( $query, ARRAY_A ) );
 		$events = array_map( array( __CLASS__, 'map_booking_to_event' ), $rows );
@@ -245,6 +256,7 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 					'status'       => $status,
 					'service_type' => $service,
 					'only_mine'    => $only_mine,
+					'all_dates'    => $all_dates,
 				),
 			)
 		);

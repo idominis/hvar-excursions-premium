@@ -10,6 +10,9 @@
     notificationSettings: {},
     todayEvents: [],
     myEvents: [],
+    myEventsPage: 1,
+    myEventsPerPage: 20,
+    myHighlightedBookingId: null,
     currentBookingId: null,
     currentConfirmationPreview: null,
     currentManagerNotification: null,
@@ -71,6 +74,34 @@
     var next = new Date(date.getTime());
     next.setDate(next.getDate() + days);
     return next;
+  }
+
+  function eventDateValue(event) {
+    return String(event && event.start ? event.start : "").slice(0, 10);
+  }
+
+  function findHighlightedMyBooking(events) {
+    var today = todayValue();
+    var candidates = events.filter(function (event) {
+      return event.extendedProps.status !== "cancelled";
+    });
+    var todayEvent = candidates.find(function (event) {
+      return eventDateValue(event) === today;
+    });
+
+    if (todayEvent) {
+      return todayEvent;
+    }
+
+    var nextEvent = candidates.find(function (event) {
+      return eventDateValue(event) > today;
+    });
+
+    return nextEvent || events[0] || null;
+  }
+
+  function clampPage(page, totalPages) {
+    return Math.max(1, Math.min(Number(page) || 1, Math.max(1, totalPages)));
   }
 
   function openNativePicker(field) {
@@ -786,6 +817,9 @@
     document.querySelectorAll(".hex-dispatch-nav__item").forEach(function (button) {
       button.classList.toggle("is-active", button.getAttribute("data-screen-target") === screenName);
     });
+    if (screenName === "mine") {
+      scrollHighlightedMyBooking();
+    }
   }
 
   function renderEmptyState(container, title, body) {
@@ -803,12 +837,16 @@
     var serviceLabel = titleCase(event.extendedProps.service_type || "");
     var skipperLabel = skipperModeLabel(event.extendedProps.skipper_mode, event.extendedProps.badge || "--");
     var title = event.title || "Booking";
+    var cardClass = "hex-dispatch-card" + (options.isHighlighted ? " is-highlighted" : "");
+    var highlightBadge = options.highlightLabel
+      ? '<span class="hex-dispatch-card__pill is-highlight">' + escapeHtml(options.highlightLabel) + "</span>"
+      : "";
     var priceBadge = event.extendedProps.booking_price != null
       ? '<span class="hex-dispatch-card__pill">' + escapeHtml("EUR " + Number(event.extendedProps.booking_price).toFixed(2)) + "</span>"
       : "";
 
     return (
-      '<button type="button" class="hex-dispatch-card" data-booking-id="' + escapeHtml(event.id) + '">' +
+      '<button type="button" class="' + cardClass + '" data-booking-id="' + escapeHtml(event.id) + '">' +
         '<div class="hex-dispatch-card__top">' +
           '<span class="hex-dispatch-card__boat">' + escapeHtml(resource ? resource.name : "Boat") + "</span>" +
           '<span class="hex-dispatch-card__time">' + escapeHtml(startLabel) + "</span>" +
@@ -818,6 +856,7 @@
           '<span class="hex-dispatch-card__pill">' + escapeHtml(serviceLabel || "Booking") + "</span>" +
           '<span class="hex-dispatch-card__pill is-accent">' + escapeHtml(skipperLabel) + "</span>" +
           priceBadge +
+          highlightBadge +
           '<span class="hex-dispatch-card__initials">' + escapeHtml(event.extendedProps.booker_initials || "--") + "</span>" +
         "</div>" +
       "</button>"
@@ -853,6 +892,65 @@
     }).join("");
   }
 
+  function myBookingHighlightLabel(event) {
+    if (!event || Number(event.id) !== Number(state.myHighlightedBookingId)) {
+      return "";
+    }
+
+    return eventDateValue(event) === todayValue() ? "Today" : "Next";
+  }
+
+  function renderMyListMeta(total, page, totalPages, startIndex, endIndex) {
+    var meta = $("#hex-dispatch-my-meta");
+    if (!meta) {
+      return;
+    }
+
+    if (!total) {
+      meta.innerHTML = "";
+      return;
+    }
+
+    meta.innerHTML =
+      '<span>' + escapeHtml("Showing " + startIndex + "-" + endIndex + " of " + total + " bookings") + "</span>" +
+      '<span>' + escapeHtml("Page " + page + " of " + totalPages) + "</span>";
+  }
+
+  function renderMyPagination(totalPages) {
+    var container = $("#hex-dispatch-my-pagination");
+    if (!container) {
+      return;
+    }
+
+    if (totalPages <= 1) {
+      container.innerHTML = "";
+      return;
+    }
+
+    var page = clampPage(state.myEventsPage, totalPages);
+    var start = Math.max(1, page - 2);
+    var end = Math.min(totalPages, start + 4);
+    start = Math.max(1, end - 4);
+
+    var buttons = [
+      '<button type="button" class="hex-dispatch-pagination__button" data-my-page="' + escapeHtml(page - 1) + '"' + (page <= 1 ? " disabled" : "") + ">Prev</button>"
+    ];
+
+    for (var index = start; index <= end; index += 1) {
+      buttons.push(
+        '<button type="button" class="hex-dispatch-pagination__button' + (index === page ? " is-active" : "") + '" data-my-page="' + escapeHtml(index) + '">' +
+          escapeHtml(index) +
+        "</button>"
+      );
+    }
+
+    buttons.push(
+      '<button type="button" class="hex-dispatch-pagination__button" data-my-page="' + escapeHtml(page + 1) + '"' + (page >= totalPages ? " disabled" : "") + ">Next</button>"
+    );
+
+    container.innerHTML = buttons.join("");
+  }
+
   function renderMyList() {
     var container = $("#hex-dispatch-my-list");
     if (!container) {
@@ -860,13 +958,40 @@
     }
 
     if (!state.myEvents.length) {
-      renderEmptyState(container, "No upcoming bookings", "Your next bookings will appear here.");
+      renderEmptyState(container, "No bookings", "Your bookings will appear here.");
+      renderMyListMeta(0, 1, 1, 0, 0);
+      renderMyPagination(1);
       return;
     }
 
-    container.innerHTML = state.myEvents.map(function (event) {
-      return buildCardMarkup(event, { showDate: true });
+    var total = state.myEvents.length;
+    var totalPages = Math.ceil(total / state.myEventsPerPage);
+    var page = clampPage(state.myEventsPage, totalPages);
+    var startIndex = (page - 1) * state.myEventsPerPage;
+    var pageEvents = state.myEvents.slice(startIndex, startIndex + state.myEventsPerPage);
+
+    state.myEventsPage = page;
+
+    container.innerHTML = pageEvents.map(function (event) {
+      var highlightLabel = myBookingHighlightLabel(event);
+      return buildCardMarkup(event, {
+        showDate: true,
+        isHighlighted: !!highlightLabel,
+        highlightLabel: highlightLabel,
+      });
     }).join("");
+
+    renderMyListMeta(total, page, totalPages, startIndex + 1, Math.min(total, startIndex + pageEvents.length));
+    renderMyPagination(totalPages);
+  }
+
+  function scrollHighlightedMyBooking() {
+    window.requestAnimationFrame(function () {
+      var highlightedCard = $("#hex-dispatch-my-list .hex-dispatch-card.is-highlighted");
+      if (highlightedCard) {
+        highlightedCard.scrollIntoView({ block: "center", behavior: "smooth" });
+      }
+    });
   }
 
   function renderBoatGroups() {
@@ -914,15 +1039,25 @@
   }
 
   async function loadMyEvents() {
-    var today = new Date();
     var payload = await request(
-      "bookings?date_from=" + encodeURIComponent(toDateValue(today)) +
-      "&date_to=" + encodeURIComponent(toDateValue(addDays(today, 14))) +
-      "&only_mine=1",
+      "bookings?only_mine=1&all_dates=1",
       { method: "GET" }
     );
     state.myEvents = payload.events || [];
+    var highlighted = findHighlightedMyBooking(state.myEvents);
+    state.myHighlightedBookingId = highlighted ? Number(highlighted.id) : null;
+    if (highlighted) {
+      var highlightedIndex = state.myEvents.findIndex(function (event) {
+        return Number(event.id) === Number(highlighted.id);
+      });
+      state.myEventsPage = Math.floor(Math.max(0, highlightedIndex) / state.myEventsPerPage) + 1;
+    } else {
+      state.myEventsPage = 1;
+    }
     renderMyList();
+    if (state.currentScreen === "mine") {
+      scrollHighlightedMyBooking();
+    }
     updateCounters();
   }
 
@@ -1132,12 +1267,25 @@
         return;
       }
 
+      if (chip.getAttribute("data-filter") === "scope" && chip.getAttribute("data-value") === "mine") {
+        setActiveChip("scope", "mine");
+        showScreen("mine");
+        return;
+      }
+
       setActiveChip(chip.getAttribute("data-filter"), chip.getAttribute("data-value"));
     });
   }
 
   function bindLists() {
     document.addEventListener("click", function (event) {
+      var myPageButton = event.target.closest("[data-my-page]");
+      if (myPageButton) {
+        state.myEventsPage = clampPage(myPageButton.getAttribute("data-my-page"), Math.ceil(state.myEvents.length / state.myEventsPerPage));
+        renderMyList();
+        return;
+      }
+
       var bookingCard = event.target.closest("[data-booking-id]");
       if (bookingCard && !event.target.closest("[data-drawer-edit]")) {
         openBookingDetails(bookingCard.getAttribute("data-booking-id"));
