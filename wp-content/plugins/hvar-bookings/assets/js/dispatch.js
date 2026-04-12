@@ -80,6 +80,14 @@
     return String(event && event.start ? event.start : "").slice(0, 10);
   }
 
+  function isPastDate(dateValue) {
+    return String(dateValue || "").slice(0, 10) < todayValue();
+  }
+
+  function isPastBooking(booking) {
+    return isPastDate(booking && booking.booking_date);
+  }
+
   function findHighlightedMyBooking(events) {
     var today = todayValue();
     var candidates = events.filter(function (event) {
@@ -841,6 +849,12 @@
     var highlightBadge = options.highlightLabel
       ? '<span class="hex-dispatch-card__pill is-highlight">' + escapeHtml(options.highlightLabel) + "</span>"
       : "";
+    var pastBadge = isPastDate(eventDateValue(event))
+      ? '<span class="hex-dispatch-card__pill is-past">Past</span>'
+      : "";
+    var initialsBadge = options.hideInitials
+      ? ""
+      : '<span class="hex-dispatch-card__initials">' + escapeHtml(event.extendedProps.booker_initials || "--") + "</span>";
     var priceBadge = event.extendedProps.booking_price != null
       ? '<span class="hex-dispatch-card__pill">' + escapeHtml("EUR " + Number(event.extendedProps.booking_price).toFixed(2)) + "</span>"
       : "";
@@ -857,7 +871,8 @@
           '<span class="hex-dispatch-card__pill is-accent">' + escapeHtml(skipperLabel) + "</span>" +
           priceBadge +
           highlightBadge +
-          '<span class="hex-dispatch-card__initials">' + escapeHtml(event.extendedProps.booker_initials || "--") + "</span>" +
+          pastBadge +
+          initialsBadge +
         "</div>" +
       "</button>"
     );
@@ -978,6 +993,7 @@
         showDate: true,
         isHighlighted: !!highlightLabel,
         highlightLabel: highlightLabel,
+        hideInitials: true,
       });
     }).join("");
 
@@ -1092,6 +1108,12 @@
       '<span class="hex-dispatch-card__pill">' + escapeHtml(titleCase(booking.service_type)) + "</span>" +
       '<span class="hex-dispatch-card__pill is-accent">' + escapeHtml(skipperModeLabel(booking.skipper_mode, titleCase((booking.skipper_mode || "").replace(/_/g, " ")))) + "</span>" +
       '<span class="hex-dispatch-card__initials">' + escapeHtml(booking.booker_initials || "--") + "</span>";
+    var pastNotice = drawer.querySelector("[data-drawer-past-notice]");
+    var bookingIsPast = isPastBooking(booking);
+    if (pastNotice) {
+      pastNotice.hidden = !bookingIsPast;
+      pastNotice.textContent = bookingIsPast ? "Past booking: this booking date has already passed." : "";
+    }
 
     var resource = getResourceById(booking.resource_id);
     var whenLabel = booking.is_all_day ? (formatDate(booking.booking_date) + " • All day") : (
@@ -1131,6 +1153,7 @@
     var managerPreviewButton = $("[data-drawer-preview-manager-note]");
     var copyButton = $("[data-drawer-copy-manager-note]");
     var sendButton = $("[data-drawer-send-manager-note]");
+    var cancelButton = $("[data-drawer-cancel-booking]");
     if (confirmationButton) {
       confirmationButton.hidden = !state.currentConfirmationPreview;
     }
@@ -1142,6 +1165,9 @@
     }
     if (sendButton) {
       sendButton.hidden = !state.currentManagerNotification;
+    }
+    if (cancelButton) {
+      cancelButton.hidden = isPastBooking(booking) || booking.status === "cancelled";
     }
 
     drawer.setAttribute("data-booking-id", String(booking.id));
@@ -1226,8 +1252,9 @@
     }
   }
 
-  async function cancelCurrentBooking() {
-    if (!state.currentBookingId) {
+  async function cancelBookingById(bookingId, options) {
+    options = options || {};
+    if (!bookingId) {
       return;
     }
 
@@ -1236,15 +1263,20 @@
     }
 
     try {
-      await request("bookings/" + state.currentBookingId, { method: "DELETE" });
+      await request("bookings/" + bookingId, { method: "DELETE" });
       await refreshLists();
       resetForm();
-      showScreen("today");
+      closeDrawer();
+      showScreen(options.nextScreen || "today");
       setToast("Booking cancelled.", "success");
     } catch (error) {
       setFormMessage(error.message || "Could not cancel booking.", "error");
       setFormStatus(null, null);
     }
+  }
+
+  async function cancelCurrentBooking() {
+    await cancelBookingById(state.currentBookingId, { nextScreen: "today" });
   }
 
   function bindNavigation() {
@@ -1322,6 +1354,17 @@
         var bookingId = drawer ? drawer.getAttribute("data-booking-id") : "";
         if (bookingId) {
           openBookingInForm(bookingId);
+        }
+      });
+    }
+
+    var drawerCancelButton = $("[data-drawer-cancel-booking]");
+    if (drawerCancelButton) {
+      drawerCancelButton.addEventListener("click", function () {
+        var drawer = $("#hex-dispatch-drawer");
+        var bookingId = drawer ? drawer.getAttribute("data-booking-id") : "";
+        if (bookingId) {
+          cancelBookingById(bookingId, { nextScreen: "mine" });
         }
       });
     }

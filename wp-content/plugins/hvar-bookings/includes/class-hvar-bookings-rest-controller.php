@@ -553,15 +553,10 @@ class Hex_Bookings_REST_Controller extends WP_REST_Controller {
 			$payload['created_at'] = current_time( 'mysql', true );
 		}
 
-		if ( null === $payload['booking_price'] ) {
-			return new WP_Error( 'hex_booking_price_required', __( 'Booked Price is required.', 'hvar-bookings' ), array( 'status' => 400 ) );
-		}
-
-		if ( null === $payload['advance_amount'] ) {
-			return new WP_Error( 'hex_advance_amount_required', __( 'Advance Charged is required.', 'hvar-bookings' ), array( 'status' => 400 ) );
-		}
-
-		if ( (float) $payload['booking_price'] < 0 || (float) $payload['advance_amount'] < 0 ) {
+		if (
+			( null !== $payload['booking_price'] && (float) $payload['booking_price'] < 0 ) ||
+			( null !== $payload['advance_amount'] && (float) $payload['advance_amount'] < 0 )
+		) {
 			return new WP_Error( 'hex_booking_money_invalid', __( 'Booked Price and Advance Charged cannot be negative.', 'hvar-bookings' ), array( 'status' => 400 ) );
 		}
 

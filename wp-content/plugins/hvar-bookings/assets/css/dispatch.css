@@ -341,6 +341,12 @@
 	color: #a34d07;
 }
 
+.hex-dispatch-card__pill.is-past {
+	background: #fff7ed;
+	border-color: #fdba74;
+	color: #9a3412;
+}
+
 .hex-dispatch-card__initials {
 	background: #102740;
 	color: #fff;
@@ -829,6 +835,16 @@
 	gap: 8px;
 }
 
+.hex-dispatch-drawer__notice {
+	padding: 11px 13px;
+	border: 1px solid #fdba74;
+	background: #fff7ed;
+	color: #9a3412;
+	font-size: 13px;
+	font-weight: 800;
+	line-height: 1.4;
+}
+
 .hex-dispatch-drawer__details {
 	display: grid;
 	gap: 12px;
@@ -864,11 +880,29 @@
 	gap: 10px;
 }
 
+.hex-dispatch-drawer__actions--primary {
+	grid-template-columns: 1fr;
+	margin-top: -2px;
+}
+
 .hex-dispatch-drawer__actions .hex-bookings-app__button {
 	width: 100%;
 	padding: 11px 14px;
 	font-size: 13px;
 	text-align: center;
+}
+
+.hex-dispatch-drawer__actions .hex-bookings-app__button--danger {
+	border-color: #d92d20;
+	background: #d92d20;
+	color: #ffffff;
+}
+
+.hex-dispatch-drawer__actions .hex-bookings-app__button--danger:hover,
+.hex-dispatch-drawer__actions .hex-bookings-app__button--danger:focus {
+	border-color: #b42318;
+	background: #b42318;
+	color: #ffffff;
 }
 
 .hex-dispatch-drawer-open {
@@ -1015,6 +1049,10 @@
 	.hex-dispatch-drawer__actions {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		align-items: stretch;
+	}
+
+	.hex-dispatch-drawer__actions--primary {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
 	.hex-dispatch-form__actions {

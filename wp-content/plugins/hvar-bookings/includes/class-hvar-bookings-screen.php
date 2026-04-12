@@ -218,7 +218,7 @@ class Hex_Bookings_Screen {
 						</label>
 						<label class="hex-dispatch-form__mode hex-dispatch-form__mode--rental">
 							<span><?php esc_html_e( 'Skipper', 'hvar-bookings' ); ?></span>
-							<select name="skipper_mode">
+							<select name="skipper_mode" required>
 								<option value="with_skipper"><?php esc_html_e( 'With skipper', 'hvar-bookings' ); ?></option>
 								<option value="without_skipper"><?php esc_html_e( 'Without skipper', 'hvar-bookings' ); ?></option>
 							</select>
@@ -285,11 +285,11 @@ class Hex_Bookings_Screen {
 						</label>
 						<label class="hex-dispatch-form__money">
 							<span><?php esc_html_e( 'Booked Price (EUR)', 'hvar-bookings' ); ?></span>
-							<input type="number" name="booking_price" min="0" step="0.01" inputmode="decimal" required>
+							<input type="number" name="booking_price" min="0" step="0.01" inputmode="decimal">
 						</label>
 						<label class="hex-dispatch-form__money">
 							<span><?php esc_html_e( 'Advance Charged (EUR)', 'hvar-bookings' ); ?></span>
-							<input type="number" name="advance_amount" min="0" step="0.01" inputmode="decimal" required>
+							<input type="number" name="advance_amount" min="0" step="0.01" inputmode="decimal">
 						</label>
 						<label class="hex-dispatch-form__toggle hex-dispatch-form__mode hex-dispatch-form__mode--rental">
 							<input type="checkbox" name="fuel_included" value="1">
@@ -399,9 +399,13 @@ class Hex_Bookings_Screen {
 			<div class="hex-dispatch-drawer__eyebrow"><?php esc_html_e( 'Booking Details', 'hvar-bookings' ); ?></div>
 			<h3 class="hex-dispatch-drawer__title">-</h3>
 			<div class="hex-dispatch-drawer__badges"></div>
+			<div class="hex-dispatch-drawer__notice" data-drawer-past-notice hidden></div>
+			<div class="hex-dispatch-drawer__actions hex-dispatch-drawer__actions--primary">
+				<button type="button" class="hex-bookings-app__button hex-bookings-app__button--primary" data-drawer-edit><?php esc_html_e( 'Edit Booking', 'hvar-bookings' ); ?></button>
+				<button type="button" class="hex-bookings-app__button hex-bookings-app__button--danger" data-drawer-cancel-booking hidden><?php esc_html_e( 'Cancel Booking', 'hvar-bookings' ); ?></button>
+			</div>
 			<dl class="hex-dispatch-drawer__details"></dl>
 			<div class="hex-dispatch-drawer__actions">
-				<button type="button" class="hex-bookings-app__button hex-bookings-app__button--primary" data-drawer-edit><?php esc_html_e( 'Edit Booking', 'hvar-bookings' ); ?></button>
 				<button type="button" class="hex-bookings-app__button" data-drawer-preview-confirmation hidden><?php esc_html_e( 'Preview Confirmation', 'hvar-bookings' ); ?></button>
 				<button type="button" class="hex-bookings-app__button" data-drawer-preview-manager-note hidden><?php esc_html_e( 'Preview Manager Note', 'hvar-bookings' ); ?></button>
 				<button type="button" class="hex-bookings-app__button" data-drawer-copy-manager-note hidden><?php esc_html_e( 'Copy Manager Note', 'hvar-bookings' ); ?></button>
@@ -597,7 +601,7 @@ class Hex_Bookings_Screen {
 					</label>
 					<label>
 						<span><?php esc_html_e( 'Skipper Mode', 'hvar-bookings' ); ?></span>
-						<select name="skipper_mode">
+						<select name="skipper_mode" required>
 							<option value="with_skipper"><?php esc_html_e( 'With skipper', 'hvar-bookings' ); ?></option>
 							<option value="without_skipper"><?php esc_html_e( 'Without skipper', 'hvar-bookings' ); ?></option>
 						</select>
@@ -624,11 +628,11 @@ class Hex_Bookings_Screen {
 				<div class="hex-bookings-form__row">
 					<label>
 						<span><?php esc_html_e( 'Booked Price (EUR)', 'hvar-bookings' ); ?></span>
-						<input type="number" name="booking_price" min="0" step="0.01" inputmode="decimal" required>
+						<input type="number" name="booking_price" min="0" step="0.01" inputmode="decimal">
 					</label>
 					<label>
 						<span><?php esc_html_e( 'Advance Charged (EUR)', 'hvar-bookings' ); ?></span>
-						<input type="number" name="advance_amount" min="0" step="0.01" inputmode="decimal" required>
+						<input type="number" name="advance_amount" min="0" step="0.01" inputmode="decimal">
 					</label>
 				</div>
 
