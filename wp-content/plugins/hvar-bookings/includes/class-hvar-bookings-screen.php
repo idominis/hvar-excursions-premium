@@ -385,8 +385,8 @@ class Hex_Bookings_Screen {
 
 		<nav class="hex-dispatch-nav" aria-label="<?php esc_attr_e( 'Dispatch navigation', 'hvar-bookings' ); ?>">
 			<button type="button" class="hex-dispatch-nav__item is-active" data-screen-target="today"><?php esc_html_e( 'Today', 'hvar-bookings' ); ?></button>
-			<button type="button" class="hex-dispatch-nav__item" data-screen-target="mine"><?php esc_html_e( 'My Bookings', 'hvar-bookings' ); ?></button>
-			<button type="button" class="hex-dispatch-nav__item hex-dispatch-nav__item--new" data-screen-target="new"><span aria-hidden="true">+</span><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></button>
+			<button type="button" class="hex-dispatch-nav__item" data-screen-target="mine"><?php esc_html_e( 'Mine', 'hvar-bookings' ); ?></button>
+			<button type="button" class="hex-dispatch-nav__item hex-dispatch-nav__item--new" data-screen-target="new"><span class="hex-dispatch-nav__plus" aria-hidden="true">+</span><span class="hex-dispatch-nav__label"><?php esc_html_e( 'New Booking', 'hvar-bookings' ); ?></span></button>
 			<button type="button" class="hex-dispatch-nav__item" data-screen-target="boats"><?php esc_html_e( 'Boats', 'hvar-bookings' ); ?></button>
 			<button type="button" class="hex-dispatch-nav__item" data-screen-target="more"><?php esc_html_e( 'More', 'hvar-bookings' ); ?></button>
 		</nav>
